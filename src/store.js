@@ -17,7 +17,9 @@ const store = new Vuex.Store({
     async retrieveGeoJsonData(context) {
         let response, data;
         try {
-            response = await Vue.http.get('/public/geojson_data.json');
+            //response = await Vue.http.get('/public/geojson_data.json');
+            console.log("Here we would get the data");
+            response = {body:"meh"};
         } catch (ex) {
             console.err("Failed to retrieve GeoJson Data", ex);
             return;
@@ -31,16 +33,4 @@ const store = new Vuex.Store({
   }
 });
 
-Vue.component('MapDataComponent', {
-  template: '<div>{{ geo_json_data || "Data goes here" }}</div><button @click="retrieveGeoJsonData">Get Data</button',
-  methods: {
-      retrieveGeoJsonData() {
-        this.$store.dispatch('retrieveGeoJsonData').then(() => {
-            console.log("Done retrieving data");
-        });
-      }
-  },
-  computed: {
-    geo_json_data() { return this.$store.state.geo_json_data }
-  }
-});
+export {store};
