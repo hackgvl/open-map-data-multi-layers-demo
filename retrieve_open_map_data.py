@@ -19,7 +19,6 @@ geo_json_collection = {}
 #Retrieve a single map category url
 def retrieve_map_category_url(url):
     map_category_url = BASE_URL + url
-    print("Getting: " + map_category_url)
     map_category_page = requests.get(map_category_url)
     #Don't spam the server
     plain = map_category_page.text
@@ -28,13 +27,11 @@ def retrieve_map_category_url(url):
     geojson_link_anchor = ""
     if (geojson_link_anchor_list):
         geojson_link_anchor = geojson_link_anchor_list[0]
-    print(geojson_link_anchor)
     return geojson_link_anchor.text
 
 #Retrieve a single map category url
 def retrieve_map_category_geojson_data(url):
     full_url = BASE_URL + url
-    print("Getting: " + full_url)
     geojson_page = requests.get(full_url)
     geojson_data = ""
     if (geojson_page.status_code == 200 and geojson_page.text is not None):
@@ -76,7 +73,6 @@ def web(page,WebUrl):
         return href_list
 
 map_layer_url = BASE_URL + '/map-layers'
-print ("BEGIN")
 map_categories = web(1, map_layer_url)
 
 #Retrieve map category URL
