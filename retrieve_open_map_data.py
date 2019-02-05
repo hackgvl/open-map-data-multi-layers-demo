@@ -63,17 +63,17 @@ def web(page,WebUrl):
                 }
                 map_entry["geojson_data"] = retrieve_map_category_geojson_data(map_entry["geojson_url"])
                 #skip for now
-                print(map_entry)
                 #map_entry['map_spreadsheet_url'] = retrieve_map_category_url(href)
                 #print(map_entry)
-                #href_list.append(map_entry)
+                href_list.append(map_entry)
                 count_entries += 1
-                if (count_entries > 3):
+                if (count_entries > 10):
                     break
         return href_list
 
 map_layer_url = BASE_URL + '/map-layers'
 map_categories = web(1, map_layer_url)
+print(json.dumps(map_categories))
 
 #Retrieve map category URL
 def retrieve_map_category_urls(url):

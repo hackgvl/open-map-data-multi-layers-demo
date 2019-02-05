@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-//import {store} from './store'
-import Maps from './services/maps'
+
+const GOOGLE_MAPS_API_KEY = "AIzaSyA-fp34A9dsuWW1FGEg2RKVBrQ7enzv-Qk";
 
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -21,7 +20,7 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
       props: {
-        geo_json_data: Maps.retrieveGeoJsonData(),
+        //geo_json_data: Maps.retrieveGeoJsonData(),
       },
     }
   ]

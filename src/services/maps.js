@@ -26,6 +26,7 @@ var Maps = (function () {
     //Retrieve Geo JSON data from the file system
     function retrieveGeoJsonData(){
         let content = fs.readFileSync(MAPS_FILE_PATH, 'utf8');
+        console.log(content);
         let geo_json_data = JSON.parse(content);
         return geo_json_data;
     }
