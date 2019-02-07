@@ -4,9 +4,11 @@
     }
     .open-data--map-data--item {
         background-color: white;
-        border: 1px solid black;
+        border: 1px solid gray;
         border-radius: 10px;
+        cursor: pointer;
         float: left;
+        font-weight: bold;
         list-style-type: none;
         margin: 0 20px 15px 0;
         padding: 10px;
@@ -29,8 +31,9 @@
 <template>
 <div class="open-data--map-data">
     <button v-on:click="updateMapLocations()">Update locations</button>
+    <button v-on:click="removeAllMapLayers()">Remove locations</button>
     <ul class="open-data--map-data--list">
-        <li class="open-data--map-data--item" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.color_sample_styles" v-bind:key="map_category.name" v-for="(map_category, index) in geoJsonData">
+        <li class="open-data--map-data--item" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in geoJsonData">
             <!--<span class="open-data--name" v-on:click="addMapLayer(map_category)">{{map_category.name}}</span>, -->
             <span class="open-data--name">{{map_category.name}}</span>
             <!--<span class="open-data--href">{{map_category.href}}</span>-->
@@ -51,7 +54,8 @@
 <script>
     import map_json from '../../data/map_data.json'
     //import L from '../../resources/leaflet-src.js'
-
+//TODO: use https://data.openupstate.org/rest/maps?_format=json
+//TODO: investigate CMV.  Does it support geo json?
     map_json.forEach(function(map_category){
         map_category.color_sample_styles = {};
         map_category.item_styles = {};
@@ -77,10 +81,25 @@
 
                 if (map && L) {
                     this.geoJsonData.forEach(function(map_category, index) {
+                        if (map_category.geojson_data.type !== "FeatureCollection") {
+                            console.log("diff type", map_category)
+                        }
                         map_data.addMapLayer(map_category);
                     });
                     //map.setView(final_coordinates);
                 }
+            },
+            removeAllMapLayers: function () {
+                let L = window.L;
+                let map = window.my_map;
+                let map_data = this;
+                if (map && L) {
+                    this.geoJsonData.forEach(function(map_category, index) {
+                        map_data.removeMapLayer(map_category);
+                    });
+                    //map.setView(final_coordinates);
+                }
+
             },
             toggleMapLayer: function(map_category) {
                 let map = window.my_map;
@@ -96,8 +115,6 @@
                 let map = window.my_map;
                 let L = window.L;
                 if (map_category.layer && !map.hasLayer(map_category)) {
-                    //The category will be white if it has been removed from the map, set it back to the original
-                    //category color
                     let marker_color = this.setMapCategoryColor(map_category, map_category.marker_color);
                     map.addLayer(map_category.layer);
                 }
@@ -129,13 +146,30 @@
                     color = generateRandomHexColor();
                 }
 
-                map_category.color_sample_styles = {
-                    backgroundColor:    color
-                };
-                map_category.item_styles = {
-                    backgroundColor:    color
-                };
+                if (color==="rm") {
+                    map_category.color_sample_styles.backgroundColor = null;
+                    map_category.item_styles.backgroundColor = null;
+                    map_category.item_styles.boxShadow = null;
+                }
+                else {
+//                  map_category.color_sample_styles.backgroundColor = color;
+//                  map_category.item_styles.backgroundColor = color;
 
+                    map_category.color_sample_styles = {
+                        backgroundColor:    color
+                    };
+                    map_category.item_styles = {
+                        backgroundColor:    color,
+                        boxShadow: "inset 0px 0px 10px black"
+                    };
+                }
+                /*
+                console.log("setting color", color)
+                map_category.color_sample_styles.backgroundColor = color;
+                map_category.item_styles.backgroundColor = color;
+                console.log("item styles", map_category.item_styles)
+                console.log("marker styles", map_category.color_sample_styles)
+                */
                 return color;
             },
             hasMapLayer: function(map_category) {
@@ -146,8 +180,7 @@
                 let map = window.my_map;
                 if (map_category.layer && map.hasLayer(map_category.layer)) {
                     map.removeLayer(map_category.layer);
-                    this.setMapCategoryColor(map_category, "white");
-                    map_category.item_styles.backgroundColor = "white";
+                    this.setMapCategoryColor(map_category, "rm");
                 }
             }
         },

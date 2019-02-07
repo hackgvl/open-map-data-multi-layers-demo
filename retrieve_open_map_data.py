@@ -67,8 +67,8 @@ def web(page,WebUrl):
                 #print(map_entry)
                 href_list.append(map_entry)
                 count_entries += 1
-                if (count_entries > 10):
-                    break
+                #if (count_entries > 10):
+                #    break
         return href_list
 
 map_layer_url = BASE_URL + '/map-layers'
