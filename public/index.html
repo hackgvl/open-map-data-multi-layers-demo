@@ -19,7 +19,7 @@
       <strong>We're sorry but open_data_gvl doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
 
-    <button id="refresh_map_button">Refresh</button>
+    <button style="float:left;margin-right:10px;" id="refresh_map_button">Refresh</button>
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script>
@@ -54,7 +54,7 @@
       document.getElementById("refresh_map_button").addEventListener("click", function() {
         initiateMap();
       });
-
+/*
       window.map_timeout = setTimeout(function (){
         if (document.querySelector("#the_map")) {
           initiateMap();
@@ -62,6 +62,7 @@
         }
         console.log("No map yet.")
       }, 1000);
+*/
     </script>
   </body>
 </html>

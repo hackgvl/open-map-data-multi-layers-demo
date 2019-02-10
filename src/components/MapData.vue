@@ -1,19 +1,39 @@
-<style>
+<style lang="scss">
+    $list-y: 50px;
+    $list-max-height: 140px;
+    $map-y: $list-y + $list-max-height;
+    $map-z: 50;
+    $list-z: $map-z + 10;
+
+
     .open-data--control-label {
         font-size:10px;
     }
     .open-data--map-data--item {
         background-color: white;
-        border: 1px solid gray;
-        border-radius: 10px;
+        border: 0.5px solid gray;
+        border-radius: 5px;
+        box-sizing: border-box;
         cursor: pointer;
         float: left;
-        font-weight: bold;
+        font-weight: 700;
         list-style-type: none;
         margin: 0 20px 15px 0;
         padding: 10px;
-        width: 200px;;
         text-align: center;
+        width: 200px;
+
+        &:hover {
+            border-radius: 10px;
+            box-shadow: 5px 5px;
+            //font-size: 18px;
+            //text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+            transition: all 0.4s ease 0s;
+        }
+    }
+
+    .open-data--name {
+        text-overflow: ellipsis;
     }
     .open-data--item-color-sample {
         border-radius: 10px;
@@ -23,28 +43,77 @@
         width: 15px;
     }
     .open-data--map-data--list {
-        max-height: 215px;
+        //border-bottom: 3px solid black;
+        max-height: $list-max-height;
         overflow: scroll;
-        width: 100%
+        position: relative;
+        //position: absolute;
+        top: 34px;
+        //top: $list-y;
+        transition: max-height 0.5s ease 0s;
+        width: 100%;
+        z-index: $list-z;
+    }
+
+    .open-data--list-container {
+        border-bottom: 3px solid black;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        z-index: $list-z - 1;
+
+        &:hover .open-data--map-data--list {
+            max-height: 500px;
+            transition: all 1s ease 0s;
+        }
+    }
+
+    .open-data--map-data--map {
+        //position: absolute;
+        //z-index: $map-z;
+    }
+
+    .open-data--utility-control {
+        border: 1px solid black;
+        float: left;
+        margin-right: 10px;
+        padding: 10px;
+
+        &.open-data--utility-control__add {
+            background-color: green;
+        }
+
+        &.open-data--utility-control__remove {
+            background-color: red;
+        }
+    }
+
+
+
+    .clearfix {
+        clear: both;
     }
 </style>
 <template>
 <div class="open-data--map-data">
-    <button v-on:click="updateMapLocations()">Update locations</button>
-    <button v-on:click="removeAllMapLayers()">Remove locations</button>
-    <ul class="open-data--map-data--list">
-        <li class="open-data--map-data--item" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in geoJsonData">
-            <!--<span class="open-data--name" v-on:click="addMapLayer(map_category)">{{map_category.name}}</span>, -->
-            <span class="open-data--name">{{map_category.name}}</span>
-            <!--<span class="open-data--href">{{map_category.href}}</span>-->
-            <div class="open-data--item-color-sample" v-bind:style="map_category.color_sample_styles"></div>
-            <div class="open-data--controls">
-                <input id="remove_map_layer" type="checkbox" v-if="hasMapLayer(map_category)">
-                <!--<label for="apply_map_layer" class="open-data--control-label"  v-on:click="removeMapLayer(map_category)">Remove</label>-->
-            </div>
-        </li>
-    </ul>
-    
+    <div class="open-data--utility-control .open-data--utility-control__add" v-on:click="updateMapLocations()">Update locations</div>
+    <div class="open-data--utility-control .open-data--utility-control__remove" v-on:click="removeAllMapLayers()">Remove locations</div>
+    <div class="clearfix"></div>
+    <div class="open-data--list-container">
+        <ul class="open-data--map-data--list">
+            <li class="open-data--map-data--item" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in geoJsonData">
+                <!--<span class="open-data--name" v-on:click="addMapLayer(map_category)">{{map_category.name}}</span>, -->
+                <span class="open-data--name">{{map_category.name}}</span>
+                <!--<span class="open-data--href">{{map_category.href}}</span>-->
+                <!--<div class="open-data--item-color-sample" v-bind:style="map_category.color_sample_styles"></div>-->
+                <div class="open-data--controls">
+                    <input id="remove_map_layer" type="checkbox" v-if="hasMapLayer(map_category)">
+                    <!--<label for="apply_map_layer" class="open-data--control-label"  v-on:click="removeMapLayer(map_category)">Remove</label>-->
+                </div>
+            </li>
+        </ul>
+    </div>
     <div style="height:500px" id="the_map" class="open-data--map-data--map">
 
     </div>
@@ -149,7 +218,6 @@
                 if (color==="rm") {
                     map_category.color_sample_styles.backgroundColor = null;
                     map_category.item_styles.backgroundColor = null;
-                    map_category.item_styles.boxShadow = null;
                 }
                 else {
 //                  map_category.color_sample_styles.backgroundColor = color;
@@ -160,7 +228,6 @@
                     };
                     map_category.item_styles = {
                         backgroundColor:    color,
-                        boxShadow: "inset 0px 0px 10px black"
                     };
                 }
                 /*
