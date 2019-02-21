@@ -10,8 +10,9 @@
             <div class="open-data--utility-control open-data--utility-control__add" v-on:click="updateMapLocations()">Update locations</div>
             <div class="open-data--utility-control open-data--utility-control__remove" v-on:click="removeAllMapLayers()">Remove locations</div>
             <div class="clearfix"></div>
+            <div class="open-data--utility-control-toggle" id="utility_control_panel_toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">Toggle Controls</div>
         </div>
-        <div class="open-data--utility-control-toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">
+
     </div>
     <!--<div class="open-data--utility-control-toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">V</div></div>-->
 
@@ -21,10 +22,12 @@
             <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
             <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
         </svg>-->
-    </div></div>
+    </div>
     <div class="open-data--map-data--category-container">
-        <div class="open-data--selected-item" v-bind:style="selected_map_category.item_styles || {}" v-on:click="toggleMapLayer(selected_map_category)" v-for="(selected_map_category, index) in selectedGeoJsonData">
-            {{selected_map_category.name}}
+        <div class="open-data--selected-items">
+            <div class="open-data--selected-item" v-bind:style="selected_map_category.item_styles || {}" v-on:click="toggleMapLayer(selected_map_category)" v-bind:key="selected_map_category.id" v-for="(selected_map_category, index) in selectedGeoJsonData">
+                {{selected_map_category.name}}
+            </div>
         </div>
         <input type="textbox" class="open-data--map-data--filter-input" v-model="filterTerm" v-on:keyup="filterMapCategories()" placeholder="Filter selection here..." id="map_data_filter_input"/>
         <div class="open-data--list-container">
@@ -202,16 +205,23 @@
             },
             toggleUtilityControls: function () {
                 let control_panel = document.getElementById("utility_control_panel");
+                console.log("control panel", control_panel)
                 if (control_panel.className.includes("open-data--utility-control-panel__open")) {
                     control_panel.classList.remove("open-data--utility-control-panel__open");
+let control_panel_toggle = document.getElementById("utility_control_panel_toggle");
+control_panel_toggle.style.display = "none";
                 }
                 else {
                     control_panel.classList.add("open-data--utility-control-panel__open");
                 }
+                
             }
         },
-        updated: function () {
-
+        created() {
+            console.log("y not tho");
+            this.$nextTick(function () {
+                this.initializeMap();
+            });
         },
         name: "mapData",
     };
@@ -262,6 +272,10 @@
         padding: 5px;
     }
 
+    .open-data--selected-items {
+        margin-top: 5px;
+    }
+
     .open-data--name {
         text-overflow: ellipsis;
     }
@@ -291,8 +305,10 @@
 
     .open-data--list-container {
         border-bottom: 3px solid black;
+        border-top: #C3C3C3 1px solid;
         height: 100%;
         margin-bottom: -50px;
+        margin-top: 30px;
         position: relative;
         overflow: hidden;
         width: 100%;
@@ -361,7 +377,7 @@
     }
     .open-data--utility-control-panel {
         display: block;
-        height: 50px;
+        height: 0;
         overflow: hidden;
         position: relative;
         text-align: center;
