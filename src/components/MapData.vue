@@ -54,6 +54,8 @@
         map_category.item_styles = {};
     });
 
+window.map_json = map_json;
+
     function generateRandomHexColor() {
         return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
     }
@@ -254,10 +256,11 @@ control_panel_toggle.style.display = "none";
 
         &:hover {
             border-radius: 10px;
-            box-shadow: 5px 5px;
+            box-shadow:0 5px 6px;
             //font-size: 18px;
             //text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-            transition: all 0.4s ease 0s;
+            transform: scale(1.1);
+            transition: all 0.7s ease 0s;
         }
     }
 

@@ -16,6 +16,13 @@ BASE_URL = "https://data.openupstate.org"
 MAP_URL_DIRECTORY = "/map/"
 geo_json_collection = {}
 
+geojson_url_exceptions = {
+    'co-working-spaces': 'coworking-spaces',
+    'go-karts-mini-golf-and-arcades': 'go-karts-mini-golf-arcades',
+    'schools-k12': 'ib-schools-k12',
+    'quilting-quilds': 'quilting-guilds'
+}
+
 #Retrieve a single map category url
 def retrieve_map_category_url(url):
     map_category_url = BASE_URL + url
@@ -55,17 +62,28 @@ def web(page,WebUrl):
             
             if MAP_URL_DIRECTORY in href:
                 category = href.split(MAP_URL_DIRECTORY)[1]
+                #url_category = geojson_url_exceptions[category] or category;
+                
+                url_category = ''
+                if category in geojson_url_exceptions:
+                    url_category = geojson_url_exceptions[category]
+                else:
+                    url_category = category
+
                 map_entry = {
                     'href': href,
-                    'geojson_url': "/map/geojson/" + category,
+                    'geojson_url': "/map/geojson/" + url_category,
                     'name': link.get_text(),
                     'category': category,
                 }
                 map_entry["geojson_data"] = retrieve_map_category_geojson_data(map_entry["geojson_url"])
+
                 #skip for now
                 #map_entry['map_spreadsheet_url'] = retrieve_map_category_url(href)
                 #print(map_entry)
-                href_list.append(map_entry)
+                if (map_entry["geojson_data"]):
+                    href_list.append(map_entry)
+
                 count_entries += 1
                 #if (count_entries > 10):
                 #    break
