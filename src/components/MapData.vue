@@ -99,7 +99,31 @@ window.map_json = map_json;
                     console.log("Filtered?", this.filteredGeoJsonData);
                 }
             },
+            fetchMapData: function () {
+                var xmlhttp = new XMLHttpRequest();
 
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+                    if (xmlhttp.status == 200) {
+                        console.log("fetch res", xmlhttp.responseText);
+                    }
+                    else if (xmlhttp.status == 400) {
+                        alert('There was an error 400');
+                    }
+                    else {
+                        //alert('something else other than 200 was returned');
+                    }
+                    }
+                };
+
+                xmlhttp.open("GET", "https://data.openupstate.org/rest/maps?_format=json", true);
+                xmlhttp.send();
+    /*
+                let map_data_promise = fetch("https://data.openupstate.org/rest/maps?_format=json").then(function(data){
+                    console.log("fetch data", data);
+                });
+                */
+            },
             removeAllMapLayers: function () {
                 let L = window.L;
                 let map = window.my_map;
@@ -142,6 +166,7 @@ window.map_json = map_json;
                     map_layer = L.geoJSON(geo_json, {
                         pointToLayer: function(feature, coords) {
                             return L.circleMarker(coords, {
+                                className: "open-data--map-marker",
                                 fillColor:      marker_color,
                                 stroke:         false,
                                 fillOpacity:    0.7,
@@ -198,6 +223,7 @@ window.map_json = map_json;
             },
             initializeMap: function() {
                 let initialize_map_fn = window.initializeMap;
+                this.fetchMapData();
                 if (typeof initialize_map_fn === "function") {
                     initialize_map_fn();
                 }
@@ -266,6 +292,7 @@ control_panel_toggle.style.display = "none";
 
     .open-data--selected-item {
         border-radius: 5px;
+        color: black;
         cursor: pointer;
         display: inline-block;
         font-size: 12px;
@@ -352,7 +379,6 @@ control_panel_toggle.style.display = "none";
     .open-data--map-data--filter-input {
         border: none;
         border-bottom: #C3C3C3 1px solid;
-        border-top: #C3C3C3 1px solid;
         float: left;
         font-size: 18px;
         height: 25px;
@@ -406,6 +432,11 @@ control_panel_toggle.style.display = "none";
     .open-data--map-data--category-container {
 
     }
+
+.open-data--map-marker {
+    fill-opacity: .3px;
+    transition: all 2s ease-out;
+}
 
 
 #more-arrows {
