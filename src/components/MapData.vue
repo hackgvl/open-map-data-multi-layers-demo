@@ -63,6 +63,16 @@ window.map_json = map_json;
     let mapCategoryCounter = 0;
 
     export default {
+        props: {
+            preselected_maps: {
+                type: Array,
+                default: null,
+            },
+            map_only: {
+                type: Boolean,
+                default: false,
+            }
+        },
         data(){
             return {
                 geoJsonData: map_json,
@@ -231,6 +241,15 @@ window.map_json = map_json;
                     console.warn("Initialize Map function undefined.")
                 }
             },
+            addPreSelectedMaps: function(map_selections) {
+                console.log("MAP SELECTIONS", map_selections);
+                this.geoJsonData.forEach(function(map_category, index) {
+                    if (map_category.category.type !== "FeatureCollection") {
+                     console.log("diff type", map_category);
+                    }
+                });
+                map_data.addMapLayer(map_category);
+            },
             toggleUtilityControls: function () {
                 let control_panel = document.getElementById("utility_control_panel");
                 console.log("control panel", control_panel)
@@ -249,6 +268,11 @@ control_panel_toggle.style.display = "none";
             console.log("y not tho");
             this.$nextTick(function () {
                 this.initializeMap();
+                console.log("route innards",this.$route.query);
+                console.log(this.preselected_maps);
+                if (this.preselected_maps) {
+                    this.addPreSelectedMaps(this.preselected_maps);
+                }
             });
         },
         name: "mapData",

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import MapData from './components/MapData.vue'
 import About from './views/About.vue'
-
-const GOOGLE_MAPS_API_KEY = "AIzaSyA-fp34A9dsuWW1FGEg2RKVBrQ7enzv-Qk";
 
 Vue.use(Router)
 export default new Router({
@@ -22,7 +21,11 @@ export default new Router({
     {
       path: '/',
       name: 'about',
-      component: About
+      component: MapData,
+      props: (route) => ({ 
+        preselected_maps: route.query.preselected_maps,
+        map_only: route.query.map_only
+      })
     },
   ]
 })
