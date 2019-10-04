@@ -10,20 +10,11 @@
             <div class="open-data--utility-control open-data--utility-control__add" v-on:click="updateMapLocations()">Update locations</div>
             <div class="open-data--utility-control open-data--utility-control__remove" v-on:click="removeAllMapLayers()">Remove locations</div>
             <div class="clearfix"></div>
-            <div class="open-data--utility-control-toggle" id="utility_control_panel_toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">Toggle Controls</div>
+            <div class="open-data--utility-control-toggle" id="utility_control_panel_toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">Toggle Controls</div></div>
         </div>
-
+        <!--<div class="open-data--utility-control-toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">V</div></div>-->
     </div>
-    <!--<div class="open-data--utility-control-toggle"><div class="open-data--utility-control-toggle-arrow" v-on:click="toggleUtilityControls()">V</div></div>-->
-
-        <!--<img src="../../public/arrows.svg"/>
-        <svg id="more-arrows" viewBox="0 0 75 65">
-            <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
-            <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
-            <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
-        </svg>-->
-    </div>
-    <div class="open-data--map-data--category-container">
+    <div class="open-data--map-data--category-container" v-if="!map_only">
         <div class="open-data--selected-items">
             <div class="open-data--selected-item" v-bind:style="selected_map_category.item_styles || {}" v-on:click="toggleMapLayer(selected_map_category)" v-bind:key="selected_map_category.id" v-for="(selected_map_category, index) in selectedGeoJsonData">
                 {{selected_map_category.name}}
@@ -32,7 +23,7 @@
         <input type="textbox" class="open-data--map-data--filter-input" v-model="filterTerm" v-on:keyup="filterMapCategories()" placeholder="Filter selection here..." id="map_data_filter_input"/>
         <div class="open-data--list-container">
             <ul class="open-data--map-data--list">
-                <li class="open-data--map-data--item" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in filteredGeoJsonData">
+                <li class="open-data--map-data--item" v-on:mouseover="highlightMapCategory(map_category)" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in filteredGeoJsonData">
                     <span class="open-data--name">{{map_category.name}}</span>
                     <div class="open-data--controls">
                         <input id="remove_map_layer" type="checkbox" v-if="hasMapLayer(map_category)">
@@ -54,7 +45,8 @@
         map_category.item_styles = {};
     });
 
-window.map_json = map_json;
+    //TODO: stop using globals globals.
+    window.map_json = map_json;
 
     function generateRandomHexColor() {
         return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
@@ -79,9 +71,13 @@ window.map_json = map_json;
                 filteredGeoJsonData: map_json,
                 selectedGeoJsonData: {},
                 filterTerm: "",
+                hoveredMapCategory: null,
             }
         },
         methods: {
+            highlightMapCategory: function () {
+
+            },
             updateMapLocations: function () {
                 let L = window.L;
                 let map = window.my_map;
@@ -92,7 +88,7 @@ window.map_json = map_json;
                 if (map && L) {
                     this.geoJsonData.forEach(function(map_category, index) {
                         if (map_category.geojson_data.type !== "FeatureCollection") {
-                            console.log("diff type", map_category)
+                            //console.log("diff type", map_category)
                         }
                         map_data.addMapLayer(map_category);
                     });
@@ -110,6 +106,10 @@ window.map_json = map_json;
                 }
             },
             fetchMapData: function () {
+                /*
+                TODO: If we want to use opendata site, resolve COORS issues. If data is stored in a database, we can just hit our own
+                API here.
+
                 var xmlhttp = new XMLHttpRequest();
 
                 xmlhttp.onreadystatechange = function() {
@@ -125,10 +125,10 @@ window.map_json = map_json;
                     }
                     }
                 };
-
+    
                 xmlhttp.open("GET", "https://data.openupstate.org/rest/maps?_format=json", true);
                 xmlhttp.send();
-    /*
+
                 let map_data_promise = fetch("https://data.openupstate.org/rest/maps?_format=json").then(function(data){
                     console.log("fetch data", data);
                 });
@@ -159,6 +159,7 @@ window.map_json = map_json;
                 let geo_json = map_category.geojson_data;
                 let map = window.my_map;
                 let L = window.L;
+
                 if (map_category.layer && !map.hasLayer(map_category)) {
                     let marker_color = this.setMapCategoryColor(map_category, map_category.marker_color);
                     map.addLayer(map_category.layer);
@@ -242,13 +243,13 @@ window.map_json = map_json;
                 }
             },
             addPreSelectedMaps: function(map_selections) {
+                let map_data = this;
                 console.log("MAP SELECTIONS", map_selections);
                 this.geoJsonData.forEach(function(map_category, index) {
-                    if (map_category.category.type !== "FeatureCollection") {
-                     console.log("diff type", map_category);
+                    if (map_selections.includes(map_category.category)) {
+                        map_data.addMapLayer(map_category);
                     }
                 });
-                map_data.addMapLayer(map_category);
             },
             toggleUtilityControls: function () {
                 let control_panel = document.getElementById("utility_control_panel");
@@ -290,6 +291,7 @@ control_panel_toggle.style.display = "none";
     .open-data--control-label {
         font-size:10px;
     }
+
     .open-data--map-data--item {
         background-color: white;
         border: 0.5px solid gray;
@@ -458,8 +460,11 @@ control_panel_toggle.style.display = "none";
     }
 
 .open-data--map-marker {
-    fill-opacity: .3px;
     transition: all 2s ease-out;
+
+    &:hover {
+        
+    }
 }
 
 

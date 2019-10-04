@@ -23,8 +23,8 @@ export default new Router({
       name: 'about',
       component: MapData,
       props: (route) => ({ 
-        preselected_maps: route.query.preselected_maps,
-        map_only: route.query.map_only
+        preselected_maps: route.query.preselected_maps ? route.query.preselected_maps.split(',') : [],
+        map_only: !!route.query.map_only
       })
     },
   ]

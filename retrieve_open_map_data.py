@@ -23,28 +23,75 @@ geojson_url_exceptions = {
     'quilting-quilds': 'quilting-guilds'
 }
 
-def retrieve_json_blob(url):
-    map_category_page = requests.get(url)
-    return json.loads(map_category_page.text) 
+#Retrieve a single map category url
+def retrieve_map_category_url(url):
+    map_category_url = BASE_URL + url
+    map_category_page = requests.get(map_category_url)
+    #Don't spam the server
+    plain = map_category_page.text
+    s = BeautifulSoup(plain, "html.parser")
+    geojson_link_anchor_list = s.select(".field--name-field-geojson-link a")
+    geojson_link_anchor = ""
+    if (geojson_link_anchor_list):
+        geojson_link_anchor = geojson_link_anchor_list[0]
+    return geojson_link_anchor.text
 
-def pull_geojson_from_json(blob):
-    for category in blob:
-        if 'field_geojson_link' in category.keys():
-            print(category['field_geojson_link'])
-            internal_url = category['field_geojson_link'][0]['uri'].replace('internal:','')
-            geojson_url = BASE_URL + internal_url
-            print(geojson_url)
-            geojson_page = requests.get(geojson_url)
-            if (geojson_page.status_code == 200 and geojson_page.text is not None):
-                print(geojson_page.text)
+#Retrieve a single map category url
+def retrieve_map_category_geojson_data(url):
+    full_url = BASE_URL + url
+    geojson_page = requests.get(full_url)
+    geojson_data = ""
+    if (geojson_page.status_code == 200 and geojson_page.text is not None):
+        geojson_data = json.loads(geojson_page.text)
+    return geojson_data
 
-#map_layer_url = BASE_URL + '/map-layers'
-#map_categories = web(1, map_layer_url)
-#print(json.dumps(map_categories))
 
-json_blob_url = "https://data.openupstate.org/rest/maps?_format=json"
-map_data = retrieve_json_blob(json_blob_url)
-pull_geojson_from_json(map_data)
+def web(page,WebUrl):
+    href_list = []
+    if(page>0):
+        url = WebUrl
+        code = requests.get(url)
+        plain = code.text
+        s = BeautifulSoup(plain, "html.parser")
+        #only_a_tags = SoupStrainer(".field-content a")
+        count_entries = 0
+        for link in s.select(".field-content a"):
+        #for link in only_a_tags:
+        #for link in only_a_tags.a:
+            href = link.get('href')
+            
+            if MAP_URL_DIRECTORY in href:
+                category = href.split(MAP_URL_DIRECTORY)[1]
+                #url_category = geojson_url_exceptions[category] or category;
+                
+                url_category = ''
+                if category in geojson_url_exceptions:
+                    url_category = geojson_url_exceptions[category]
+                else:
+                    url_category = category
+
+                map_entry = {
+                    'href': href,
+                    'geojson_url': "/map/geojson/" + url_category,
+                    'name': link.get_text(),
+                    'category': category,
+                }
+                map_entry["geojson_data"] = retrieve_map_category_geojson_data(map_entry["geojson_url"])
+
+                #skip for now
+                #map_entry['map_spreadsheet_url'] = retrieve_map_category_url(href)
+                #print(map_entry)
+                if (map_entry["geojson_data"]):
+                    href_list.append(map_entry)
+
+                count_entries += 1
+                #if (count_entries > 10):
+                #    break
+        return href_list
+
+map_layer_url = BASE_URL + '/map-layers'
+map_categories = web(1, map_layer_url)
+print(json.dumps(map_categories))
 
 #Retrieve map category URL
 def retrieve_map_category_urls(url):
@@ -57,3 +104,6 @@ def retrieve_map_category_urls(url):
         map_category_page = requests.get(map_category_url)
         geojson_link_anchor = s.select(".field--name-field-geojson-link a")
         geojson_link_anchor.text
+
+
+
