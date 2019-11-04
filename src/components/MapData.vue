@@ -16,14 +16,26 @@
     </div>
     <div class="open-data--map-data--category-container" v-if="!map_only">
         <div class="open-data--selected-items">
-            <div class="open-data--selected-item" v-bind:style="selected_map_category.item_styles || {}" v-on:click="toggleMapLayer(selected_map_category)" v-bind:key="selected_map_category.id" v-for="(selected_map_category, index) in selectedGeoJsonData">
+            <div class="open-data--selected-item"
+                v-bind:style="selected_map_category.item_styles || {}"
+                v-on:click="toggleMapLayer(selected_map_category)"
+                v-bind:key="selected_map_category.id"
+                v-for="(selected_map_category, index) in selectedGeoJsonData"
+            >
                 {{selected_map_category.name}}
             </div>
         </div>
-        <input type="textbox" class="open-data--map-data--filter-input" v-model="filterTerm" v-on:keyup="filterMapCategories()" placeholder="Filter selection here..." id="map_data_filter_input"/>
+        <input type="textbox" class="open-data--map-data--filter-input" v-model="filterTerm" v-on:keyup="filterMapCategories()" placeholder="Filter options here..." id="map_data_filter_input"/>
         <div class="open-data--list-container">
             <ul class="open-data--map-data--list">
-                <li class="open-data--map-data--item" v-on:mouseover="highlightMapCategory(map_category)" v-on:click="toggleMapLayer(map_category)" v-bind:style="map_category.item_styles" v-bind:key="map_category.name" v-for="(map_category, index) in filteredGeoJsonData">
+                <li class="open-data--map-data--item"
+                    v-on:mouseout="highlightMapCategory(map_category,false)"
+                    v-on:mouseover="highlightMapCategory(map_category,true)"
+                    v-on:click="handleCategoryClick(map_category)"
+                    v-bind:style="map_category.item_styles"
+                    v-bind:key="map_category.name"
+                    v-for="(map_category, index) in filteredGeoJsonData"
+                >
                     <span class="open-data--name">{{map_category.name}}</span>
                     <div class="open-data--controls">
                         <input id="remove_map_layer" type="checkbox" v-if="hasMapLayer(map_category)">
@@ -53,6 +65,10 @@
     }
 
     let mapCategoryCounter = 0;
+    const CATEGORY_MARKER_CLASS_SUFFIX = "_marker";
+    const DEFAULT_MARKER_OUTLINE = 1;
+    const HIGHLIGHTED_MARKER_OUTLINE = 4;
+    const DOUBLE_CLICK_TIME = 400;
 
     export default {
         props: {
@@ -75,13 +91,17 @@
             }
         },
         methods: {
-            highlightMapCategory: function () {
-
+            highlightMapCategory: function (map_category, highlight) {
+                let markers = document.querySelectorAll("." + map_category.marker_class)
+                let stroke_width = DEFAULT_MARKER_OUTLINE;
+                if (highlight) {
+                    stroke_width = HIGHLIGHTED_MARKER_OUTLINE;
+                }
+                markers.forEach(m => {m.setAttribute("stroke-width", stroke_width)});
             },
             updateMapLocations: function () {
                 let L = window.L;
                 let map = window.my_map;
-                //let final_coordinates;
                 let features;
                 let map_data = this;
 
@@ -92,7 +112,6 @@
                         }
                         map_data.addMapLayer(map_category);
                     });
-                    //map.setView(final_coordinates);
                 }
             },
             filterMapCategories: function () {
@@ -102,7 +121,6 @@
                     this.filteredGeoJsonData = this.geoJsonData.filter(function (map_category) {
                         return map_category.name.toLowerCase().includes(filter_term);
                     });
-                    console.log("Filtered?", this.filteredGeoJsonData);
                 }
             },
             fetchMapData: function () {
@@ -142,7 +160,6 @@
                     this.geoJsonData.forEach(function(map_category, index) {
                         map_data.removeMapLayer(map_category);
                     });
-                    //map.setView(final_coordinates);
                 }
 
             },
@@ -152,6 +169,35 @@
                     this.removeMapLayer(map_category);
                 } else {
                     this.addMapLayer(map_category);
+                }
+            },
+            // allow double clicks to change category color when category is already selected
+            handleCategoryClick(map_category) {
+                let map = window.my_map;
+                map_category.click_data = map_category.click_data || {};
+                let click_data = map_category.click_data;
+
+                if(!click_data.clicked) {
+                    if (!map_category.layer || !map.hasLayer(map_category.layer)) {
+                        this.addMapLayer(map_category);
+                    }
+                    else {
+                        click_data.clicked = true;
+                        // set a click timer so we can see if the user clicks again in a brief amount of time
+                        click_data.click_timer = setTimeout(() => {
+                                if (click_data.clicked) {
+                                    this.removeMapLayer(map_category);
+                                    click_data.clicked = false;
+                                    click_data.click_timer = null;
+                                }
+                        }, DOUBLE_CLICK_TIME);
+                    }
+                }
+                else {
+                    this.setMapCategoryColor(map_category);
+                    clearTimeout(click_data.click_timer);
+                    click_data.click_timer = null;
+                    click_data.clicked = false;
                 }
             },
             //Add a GeoJson map layer to the map.  If the layer was already created, will reuse the old layer.
@@ -172,14 +218,15 @@
                     this.selectedGeoJsonData[map_category_id] = map_category;
                     //Re-use same color if set
                     let marker_color = this.setMapCategoryColor(map_category, map_category.marker_color);
-                    map_category.marker_color = marker_color;
+                    map_category.marker_class = map_category.id + CATEGORY_MARKER_CLASS_SUFFIX;
 
                     map_layer = L.geoJSON(geo_json, {
                         pointToLayer: function(feature, coords) {
                             return L.circleMarker(coords, {
-                                className: "open-data--map-marker",
+                                className: "open-data--map-marker " + map_category.marker_class,
                                 fillColor:      marker_color,
-                                stroke:         false,
+                                color:          marker_color,
+                                weight:         HIGHLIGHTED_MARKER_OUTLINE,
                                 fillOpacity:    0.7,
                             });
                         }
@@ -187,10 +234,10 @@
                         let popup_html = document.createElement("span").innerHTML = layer.feature.properties.title || "meh";
                         return popup_html;
                     }).addTo(map);
-                    map_category.layer = map_layer;
 
+                    map_category.layer = map_layer;
                     mapCategoryCounter++;
-                }
+              }
             },
             //Set the color of the category, return the color value in case we created a new one
             setMapCategoryColor: function (map_category, color) {
@@ -210,15 +257,29 @@
                     map_category.item_styles = {
                         backgroundColor:    color,
                     };
+                    map_category.marker_color = color;
+                    this.updateMarkerColor(map_category, color);
                 }
-                /*
-                console.log("setting color", color)
-                map_category.color_sample_styles.backgroundColor = color;
-                map_category.item_styles.backgroundColor = color;
-                console.log("item styles", map_category.item_styles)
-                console.log("marker styles", map_category.color_sample_styles)
-                */
+
                 return color;
+            },
+            updateMarkerColor: function (map_category, color) {
+                if(!map_category.marker_class) {
+                    return;
+                }
+                let markers = document.querySelectorAll("." + map_category.marker_class);
+                markers.forEach(m => {
+                    m.setAttribute("stroke", color);
+                    m.setAttribute("fill", color);
+                });
+                let sub_layers = {};
+                if (map_category.layer && map_category.layer._layers) {
+                    sub_layers = map_category.layer._layers;
+                }
+                for(let layer_id in sub_layers) {
+                    sub_layers[layer_id].options.fillColor = color;
+                    sub_layers[layer_id].options.color = color;
+                }
             },
             hasMapLayer: function(map_category) {
                 let map = window.my_map;
@@ -244,7 +305,6 @@
             },
             addPreSelectedMaps: function(map_selections) {
                 let map_data = this;
-                console.log("MAP SELECTIONS", map_selections);
                 this.geoJsonData.forEach(function(map_category, index) {
                     if (map_selections.includes(map_category.category)) {
                         map_data.addMapLayer(map_category);
@@ -253,11 +313,9 @@
             },
             toggleUtilityControls: function () {
                 let control_panel = document.getElementById("utility_control_panel");
-                console.log("control panel", control_panel)
                 if (control_panel.className.includes("open-data--utility-control-panel__open")) {
                     control_panel.classList.remove("open-data--utility-control-panel__open");
-let control_panel_toggle = document.getElementById("utility_control_panel_toggle");
-control_panel_toggle.style.display = "none";
+                    let control_panel_toggle = document.getElementById("utility_control_panel_toggle");
                 }
                 else {
                     control_panel.classList.add("open-data--utility-control-panel__open");
@@ -266,11 +324,10 @@ control_panel_toggle.style.display = "none";
             }
         },
         created() {
-            console.log("y not tho");
             this.$nextTick(function () {
                 this.initializeMap();
-                console.log("route innards",this.$route.query);
-                console.log(this.preselected_maps);
+                //console.log("route innards",this.$route.query);
+                //console.log(this.preselected_maps);
                 if (this.preselected_maps) {
                     this.addPreSelectedMaps(this.preselected_maps);
                 }
@@ -309,8 +366,6 @@ control_panel_toggle.style.display = "none";
         &:hover {
             border-radius: 10px;
             box-shadow:0 5px 6px;
-            //font-size: 18px;
-            //text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
             transform: scale(1.1);
             transition: all 0.7s ease 0s;
         }
@@ -343,17 +398,12 @@ control_panel_toggle.style.display = "none";
         width: 15px;
     }
     .open-data--map-data--list {
-        //border-bottom: 3px solid black;
         max-height: $list-max-height;
         margin: 0 0 -16px 0;
-        //margin-bottom: -16px;
         min-height: $list-max-height;
         overflow: scroll;
         padding-top: 20px;
         position: relative;
-        //position: absolute;
-        //top: 34px;
-        //top: $list-y;
         transition: max-height 0.5s ease 0s;
         width: 100%;
         z-index: $list-z;
@@ -379,9 +429,6 @@ control_panel_toggle.style.display = "none";
     .open-data--map-data--map {
         height: 500px;
         border-bottom: 3px solid #525252;
-        //top: 50px;
-        //position: absolute;
-        //z-index: $map-z;
     }
 
     .open-data--utility-control {
@@ -417,7 +464,6 @@ control_panel_toggle.style.display = "none";
         }
 
         &:focus {
-            //box-shadow: -5px 8px 6px -4px #6D9EED;
             outline: none;
         }
 
@@ -428,7 +474,6 @@ control_panel_toggle.style.display = "none";
 
     .open-data--utility-control-container {
         display: block;
-        //position: absolute;
     }
     .open-data--utility-control-panel {
         display: block;
@@ -455,18 +500,9 @@ control_panel_toggle.style.display = "none";
         width: 80px;
     }
 
-    .open-data--map-data--category-container {
-
+    .open-data--map-marker {
+        transition: stroke-width  .5s ease-out;
     }
-
-.open-data--map-marker {
-    transition: all 2s ease-out;
-
-    &:hover {
-        
-    }
-}
-
 
 #more-arrows {
 	width: 75px;
