@@ -20,6 +20,8 @@
                 v-bind:style="selected_map_category.item_styles || {}"
                 v-on:click="toggleMapLayer(selected_map_category)"
                 v-bind:key="selected_map_category.id"
+                v-on:mouseout="highlightMapCategory(selected_map_category,false)"
+                v-on:mouseover="highlightMapCategory(selected_map_category,true)"
                 v-for="(selected_map_category, index) in selectedGeoJsonData"
             >
                 {{selected_map_category.name}}
@@ -48,20 +50,37 @@
 </template>
 
 <script>
+    //TODO: This block is messy, and likely unnecessary. There is probably a better way to initialize everything in
+    //      a much more "vue-like" way.
     import map_json from '../../data/map_data.json'
     //import L from '../../resources/leaflet-src.js'
-//TODO: use https://data.openupstate.org/rest/maps?_format=json
-//TODO: investigate CMV.  Does it support geo json?
+    //TODO: use https://data.openupstate.org/rest/maps?_format=json
+    //TODO: investigate CMV.  Does it support geo json?
     map_json.forEach(function(map_category){
         map_category.color_sample_styles = {};
         map_category.item_styles = {};
     });
 
-    //TODO: stop using globals globals.
     window.map_json = map_json;
 
     function generateRandomHexColor() {
         return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
+    }
+
+    // logic from: https://stackoverflow.com/a/12043228
+    function isLightColor(c) {
+        c = c.substring(1);      // strip #
+        let rgb = parseInt(c, 16);   // convert rrggbb to decimal
+        let r = (rgb >> 16) & 0xff;  // extract red
+        let g = (rgb >>  8) & 0xff;  // extract green
+        let b = (rgb >>  0) & 0xff;  // extract blue
+
+        let luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+
+        if (luma < 110) {
+            return false;
+        }
+        return true;
     }
 
     let mapCategoryCounter = 0;
@@ -69,6 +88,9 @@
     const DEFAULT_MARKER_OUTLINE = 1;
     const HIGHLIGHTED_MARKER_OUTLINE = 4;
     const DOUBLE_CLICK_TIME = 400;
+
+    const DARK_TEXT_COLOR = "black";
+    const LIGHT_TEXT_COLOR = "white";
 
     export default {
         props: {
@@ -87,16 +109,12 @@
                 filteredGeoJsonData: map_json,
                 selectedGeoJsonData: {},
                 filterTerm: "",
-                hoveredMapCategory: null,
             }
         },
         methods: {
             highlightMapCategory: function (map_category, highlight) {
                 let markers = document.querySelectorAll("." + map_category.marker_class)
-                let stroke_width = DEFAULT_MARKER_OUTLINE;
-                if (highlight) {
-                    stroke_width = HIGHLIGHTED_MARKER_OUTLINE;
-                }
+                let stroke_width = highlight ? HIGHLIGHTED_MARKER_OUTLINE : DEFAULT_MARKER_OUTLINE;
                 markers.forEach(m => {m.setAttribute("stroke-width", stroke_width)});
             },
             updateMapLocations: function () {
@@ -245,17 +263,22 @@
                 if (!color) {
                     color = generateRandomHexColor();
                 }
+                console.log("color", color);
+                let is_light_color = isLightColor(color);
+                console.log("is light?", is_light_color);
 
                 if (color==="rm") {
                     map_category.color_sample_styles.backgroundColor = null;
                     map_category.item_styles.backgroundColor = null;
                 }
                 else {
+                    let text_color = is_light_color ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR;
                     map_category.color_sample_styles = {
                         backgroundColor:    color
                     };
                     map_category.item_styles = {
                         backgroundColor:    color,
+                        color:              text_color,
                     };
                     map_category.marker_color = color;
                     this.updateMarkerColor(map_category, color);
