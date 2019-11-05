@@ -268,8 +268,8 @@
                 console.log("is light?", is_light_color);
 
                 if (color==="rm") {
-                    map_category.color_sample_styles.backgroundColor = null;
-                    map_category.item_styles.backgroundColor = null;
+                    map_category.color_sample_styles = {};
+                    map_category.item_styles = {};
                 }
                 else {
                     let text_color = is_light_color ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR;
@@ -474,11 +474,10 @@
 
     .open-data--map-data--filter-input {
         border: none;
-        border-bottom: #C3C3C3 1px solid;
+        border-bottom: #F7F7F7 1px solid;
         float: left;
         font-size: 18px;
         height: 25px;
-        //margin-top: 5px;
         padding: 5px;
         width: 100%;
 
@@ -487,11 +486,8 @@
         }
 
         &:focus {
+            border-bottom: #C3C3C3 1px solid;
             outline: none;
-        }
-
-        &:hover {
-            //box-shadow: -5px 8px 6px -4px #6D9EED;
         }
     }
 
@@ -544,11 +540,8 @@
       &.arrow-top {
         transform: translateY(18px);
       }
-      
     }
-  
   }
-  
 }
 
 polygon {
@@ -564,11 +557,11 @@ polygon {
     }
 }
 
-    body {
-        margin: 0;
-    }
+body {
+    margin: 0;
+}
 
-    .clearfix {
-        clear: both;
-    }
+.clearfix {
+    clear: both;
+}
 </style>
