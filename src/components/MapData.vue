@@ -33,7 +33,8 @@
                 <li class="open-data--map-data--item"
                     v-on:mouseout="highlightMapCategory(map_category,false)"
                     v-on:mouseover="highlightMapCategory(map_category,true)"
-                    v-on:click="handleCategoryClick(map_category)"
+                    v-on:click="handleCategoryClick(map_category,$event)"
+                    v-on:mousedown="preventDoubleClickSelection"
                     v-bind:style="map_category.item_styles"
                     v-bind:key="map_category.name"
                     v-for="(map_category, index) in filteredGeoJsonData"
@@ -190,7 +191,7 @@
                 }
             },
             // allow double clicks to change category color when category is already selected
-            handleCategoryClick(map_category) {
+            handleCategoryClick: function(map_category, e) {
                 let map = window.my_map;
                 map_category.click_data = map_category.click_data || {};
                 let click_data = map_category.click_data;
@@ -216,6 +217,11 @@
                     clearTimeout(click_data.click_timer);
                     click_data.click_timer = null;
                     click_data.clicked = false;
+                }
+            },
+            preventDoubleClickSelection: function(e){
+                if (e.detail > 1) {
+                    e.preventDefault();
                 }
             },
             //Add a GeoJson map layer to the map.  If the layer was already created, will reuse the old layer.
@@ -263,9 +269,7 @@
                 if (!color) {
                     color = generateRandomHexColor();
                 }
-                console.log("color", color);
                 let is_light_color = isLightColor(color);
-                console.log("is light?", is_light_color);
 
                 if (color==="rm") {
                     map_category.color_sample_styles = {};
