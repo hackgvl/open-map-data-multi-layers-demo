@@ -1,6 +1,9 @@
 #Retrieve map layer data from data.openupstate.org
 #
 #TODOS:
+#   ~Scraping the site is inefficient and fragile
+#   ~Visiting individual urls for the geojson data requires too many data.openupstate website hits.  Would
+#    be great to have one URL with all the geojson data
 #   ~If implemented in browser, cache data for each layer retrieved.
 #       ?Give the option to update via a button eventually?
 #   
@@ -95,10 +98,14 @@ print(json.dumps(map_categories))
 
 #Retrieve map category URL
 def retrieve_map_category_urls(url):
+    count = 0
     map_layer_url = BASE_URL + 'map-layers'
     map_categories = web(1, map_layer_url)
     for map_category in map_categories:
         map_category_url = map_category
+        count = count + 1
+        if count > 7
+            break
         #Don't want to spam the server too quickly
         time.sleep(5)
         map_category_page = requests.get(map_category_url)
