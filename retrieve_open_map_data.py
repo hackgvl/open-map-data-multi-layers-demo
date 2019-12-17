@@ -104,8 +104,6 @@ def retrieve_map_category_urls(url):
     for map_category in map_categories:
         map_category_url = map_category
         count = count + 1
-        if count > 7
-            break
         #Don't want to spam the server too quickly
         time.sleep(5)
         map_category_page = requests.get(map_category_url)
