@@ -62,10 +62,24 @@
         map_category.item_styles = {};
     });
 
+    // hash of map categories organized by uuid
+    const categories_by_id = getMapCategoriesById(map_json);
+
     window.map_json = map_json;
 
     function generateRandomHexColor() {
         return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
+    }
+
+    // returns a hash of map categories, using the uuid as the key
+    function getMapCategoriesById(json) {
+        return json.reduce((categories_by_id, category) => {
+            //let id = category.uuid[0].value;
+            //categories_by_id[id] = category;
+            console.log("JSON BY ID Data", category);
+
+            return categories_by_id;
+        }, {});
     }
 
     // logic from: https://stackoverflow.com/a/12043228
@@ -83,6 +97,51 @@
         }
         return true;
     }
+
+    async function fetchMapCategoryUrls(url) {
+        let  geojson_links = [];
+        const resp = await fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        });
+        const json = await resp.json();
+        json.forEach(category => {
+            console.log("Evaluating Category", category);
+            if (category.field_geojson_link && category.field_geojson_link.length) {
+                let geojson_link = category.field_geojson_link[0].uri;
+                geojson_link = geojson_link.replace('internal:','');
+                geojson_links.push(geojson_link);
+            }
+        });
+        console.log("JSON DATA", geojson_links);
+    }
+
+    async function fetchMapCategoryData(url) {
+        let geojson_links = [];
+        const resp = await fetch(url, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        });
+        const json = await resp.json();
+        return json.reduce((categories_by_id, category) => {
+            let id = category.uuid[0].value;
+            categories_by_id[id] = category;
+            console.log("Evaluating Data", category);
+
+            return categories_by_id;
+        }, {});
+    }
+
+    async function fetchMapCategoryGeojsonData(url) {
+        console.log("fetching category at url:", url);
+        const resp = await fetch(url, {
+            method: 'GET',
+            //headers: {'Content-Type': 'application/json'}
+        });
+        const json = await resp.text();
+        console.log("Single geojson data", json);
+    }
+
 
     let mapCategoryCounter = 0;
     const CATEGORY_MARKER_CLASS_SUFFIX = "_marker";
@@ -143,33 +202,20 @@
                 }
             },
             fetchMapData: function () {
-                /*
-                TODO: If we want to use opendata site, resolve COORS issues. If data is stored in a database, we can just hit our own
-                API here.
+                let url_collection = [];
+                try {
+                    //const map_category_urls = fetchMapCategoryUrls("https://data.openupstate.org/rest/maps?_format=json");
+const api_category_data = fetchMapCategoryData("https://data.openupstate.org/rest/maps?_format=json");
+const json_category_data = getMapCategoryHashById("https://data.openupstate.org/rest/maps?_format=json");
 
-                var xmlhttp = new XMLHttpRequest();
 
-                xmlhttp.onreadystatechange = function() {
-                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-                    if (xmlhttp.status == 200) {
-                        console.log("fetch res", xmlhttp.responseText);
-                    }
-                    else if (xmlhttp.status == 400) {
-                        alert('There was an error 400');
-                    }
-                    else {
-                        //alert('something else other than 200 was returned');
-                    }
-                    }
-                };
-    
-                xmlhttp.open("GET", "https://data.openupstate.org/rest/maps?_format=json", true);
-                xmlhttp.send();
+                console.log(map_category_urls);
 
-                let map_data_promise = fetch("https://data.openupstate.org/rest/maps?_format=json").then(function(data){
-                    console.log("fetch data", data);
-                });
-                */
+                //    console.log("JSON Datas", datas);
+
+                } catch(e) {
+                    console.error(e);
+                }
             },
             removeAllMapLayers: function () {
                 let L = window.L;
