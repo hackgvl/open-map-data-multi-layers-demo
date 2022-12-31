@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.link {
+  @apply underline hover:text-white active:text-white;
+  @apply transition-all duration-300 ease-in-out;
+}
