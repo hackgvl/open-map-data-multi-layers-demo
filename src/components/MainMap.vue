@@ -98,12 +98,20 @@ async function addMapLayer(
             `<div>Map: ${mapData.mapTitle}</div>` +
             Object.keys(properties)
               .filter((key) => key != "OBJECTID" && properties[key])
-              .map(
-                (key) => `<div>${toTitleCase(key)}: ${properties[key]}</div>`
-              )
+              .map((key) => {
+                const propertyName = toTitleCase(key).replace(/_/g, " ");
+                let propertyValue;
+                if (properties[key].startsWith("https://")) {
+                  propertyValue = `<a href="${properties[key]}" target="_blank" rel="noreferrer">${properties[key]}</a>`;
+                } else {
+                  propertyValue = properties[key];
+                }
+
+                return `<div>${propertyName}: ${propertyValue}</div>`;
+              })
               .join("");
 
-          layer.bindTooltip(tooltipString, { permanent: false, sticky: true });
+          layer.bindPopup(tooltipString, {});
         }
       },
     };
