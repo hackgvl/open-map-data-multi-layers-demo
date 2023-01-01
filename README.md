@@ -2,9 +2,16 @@
 This is a Vue project which allows all you to view all of Code for Greenville's
 open map data!
 
-Visit [the Github
+- View the live demo at
+[https://codeforgreenville.org/open-map-data-multi-layers-demo/](https://codeforgreenville.org/open-map-data-multi-layers-demo/)
+
+- Visit [the OpenData Github
 repo](https://github.com/codeforgreenville/OpenData/blob/master/MAPS_API.md) for
 more information about this data.
+
+Contributions to this project or the map data is greatly appreciated!
+You can visit the [Code for Greenville](https://codeforgreenville.org) website to
+find out how to get involved.
 
 ## Recommended IDE Setup
 
