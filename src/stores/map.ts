@@ -33,10 +33,9 @@ export const useMapStore = defineStore("map", {
       if (!mapData.geoJson) {
         await fetch(mapData.geoJsonUrl)
           .then((response) => response.json() as unknown as GeoJSON)
-          .then(
-            (response) =>
-              (this.availableMaps[mapData.mapTitle].geoJson = response)
-          )
+          .then((response) => {
+            this.availableMaps[mapData.mapTitle].geoJson = response;
+          })
           .catch((error) => {
             console.error(
               `error while fetching ${mapData.mapSlug} geoJson from ${mapData.geoJsonUrl}`,
@@ -72,6 +71,7 @@ export const useMapStore = defineStore("map", {
                   mapSlug: mapDataJson.field_slug[0].value,
                   mapTitle: mapDataJson.title[0].value,
                   geoJsonUrl: geoJsonUrl,
+                  color: getRandomColor(mapDataJson.field_slug[0].value),
                 };
 
                 this.availableMaps[mapData.mapTitle] = mapData;
@@ -87,3 +87,33 @@ export const useMapStore = defineStore("map", {
     },
   },
 });
+
+// Uses the title for a hash, so it'll return the same color for the same title
+// every time
+function getRandomColor(title: String) {
+  const colors = [
+    "aqua",
+    "black",
+    "blue",
+    "fuchsia",
+    "green",
+    "lime",
+    "maroon",
+    "navy",
+    "olive",
+    "purple",
+    "red",
+    "teal",
+    "yellow",
+  ];
+
+  return colors[
+    Math.floor(Math.abs(Math.sin(simpleHash(title))) * colors.length)
+  ];
+}
+
+function simpleHash(s: String) {
+  let h = 0;
+  for (let i = 0; i < s.length; h &= h) h = 31 * h + s.charCodeAt(i++);
+  return h;
+}

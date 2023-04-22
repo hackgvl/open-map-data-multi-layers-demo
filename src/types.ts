@@ -12,12 +12,18 @@ export type MapTitle = string;
 export type MapSlug = string;
 
 /**
+ * Represents a hexadecimal color
+ */
+export type Color = string;
+
+/**
  * Represents an object with all the available details for a map
  */
 export type MapData = {
   mapSlug: MapSlug;
   mapTitle: MapTitle;
   geoJsonUrl: URL;
+  color: Color;
   geoJson?: GeoJSON;
 };
 

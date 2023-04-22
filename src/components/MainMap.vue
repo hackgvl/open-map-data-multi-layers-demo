@@ -1,6 +1,6 @@
 <script lang="ts">
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import L, { LatLng } from "leaflet";
 import type { Map, GeoJSON, LayersControlEvent } from "leaflet";
 </script>
 
@@ -90,6 +90,34 @@ async function addMapLayer(
     layer = layerData.layer;
   } else {
     const options = {
+      style: function () {
+        return {
+          fillColor: mapData.color,
+          color: mapData.color,
+        };
+      },
+      pointToLayer: function (_feature: Feature, latlng: LatLng) {
+        const markerHtmlStyles = `
+          background-color: ${mapData.color};
+          width: 2rem;
+          height: 2rem;
+          display: block;
+          left: -1rem;
+          top: -1rem;
+          position: relative;
+          border-radius: 2rem 2rem 0;
+          transform: rotate(45deg);
+          border: 1px solid #FFFFFFAA`;
+
+        const markerIcon = L.divIcon({
+          className: "",
+          iconAnchor: [0, 24],
+          popupAnchor: [0, -36],
+          html: `<span style="${markerHtmlStyles}" />`,
+        });
+
+        return L.marker(latlng, { icon: markerIcon });
+      },
       onEachFeature: function (feature: Feature, layer: GeoJSON) {
         if (feature && feature.properties) {
           const properties = feature.properties;
@@ -120,7 +148,7 @@ async function addMapLayer(
     };
 
     layer = L.geoJSON([], options);
-    control.addOverlay(layer, mapData.mapTitle);
+    control.addOverlay(layer, `${mapData.mapTitle} (${mapData.color})`);
   }
 
   const newLayerData: LayerData = { layer, loaded: visible, visible };
