@@ -12,7 +12,7 @@ export type MapTitle = string;
 export type MapSlug = string;
 
 /**
- * Represents a hexadecimal color
+ * Represents a html color name
  */
 export type Color = string;
 

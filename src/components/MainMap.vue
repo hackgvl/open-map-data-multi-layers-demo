@@ -56,11 +56,13 @@ async function initializeMap(map: Map) {
   });
 
   map.on("overlayadd", async function (e: LayersControlEvent) {
-    addMapLayer(map, control, mapStore.availableMaps[e.name], true);
+    const mapName = e.name.replace(/ \(.+\)$/, "");
+    addMapLayer(map, control, mapStore.availableMaps[mapName], true);
   });
 
   map.on("overlayremove", async function (e: LayersControlEvent) {
-    addMapLayer(map, control, mapStore.availableMaps[e.name], false);
+    const mapName = e.name.replace(/ \(.+\)$/, "");
+    addMapLayer(map, control, mapStore.availableMaps[mapName], false);
   });
 }
 
@@ -90,7 +92,7 @@ async function addMapLayer(
     layer = layerData.layer;
   } else {
     const options = {
-      style: function () {
+      style: function (_feature: Feature) {
         return {
           fillColor: mapData.color,
           color: mapData.color,
