@@ -92,7 +92,7 @@ async function addMapLayer(
     layer = layerData.layer;
   } else {
     const options = {
-      style: function (_feature: Feature) {
+      style: function () {
         return {
           fillColor: mapData.color,
           color: mapData.color,
