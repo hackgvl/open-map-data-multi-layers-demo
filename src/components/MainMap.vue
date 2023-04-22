@@ -101,7 +101,10 @@ async function addMapLayer(
               .map((key) => {
                 const propertyName = toTitleCase(key).replace(/_/g, " ");
                 let propertyValue;
-                if (properties[key].startsWith("https://")) {
+                if (
+                  properties[key].startsWith("http") ||
+                  properties[key].startsWith("tel")
+                ) {
                   propertyValue = `<a href="${properties[key]}" target="_blank" rel="noreferrer">${properties[key]}</a>`;
                 } else {
                   propertyValue = properties[key];
