@@ -1,11 +1,5 @@
 describe("Map", () => {
   function loadMap(path: string) {
-    cy.wrap(
-      Cypress.automation("remote:debugger:protocol", {
-        command: "Network.clearBrowserCache",
-      })
-    );
-
     cy.intercept("https://*.tile.openstreetmap.org/**", {
       fixture: "images/tile.png",
     }).as("tiles");
