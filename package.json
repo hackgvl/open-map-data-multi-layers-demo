@@ -11,8 +11,8 @@
     "test:all": "run-p build test:unit test:e2e type-check lint-check",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore; prettier --write .",
-    "lint-check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix-dry-run --ignore-path .gitignore && prettier --check ."
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore; prettier --write . --ignore-path .gitignore",
+    "lint-check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix-dry-run --ignore-path .gitignore && prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.10",
