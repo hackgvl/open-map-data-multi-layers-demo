@@ -25,15 +25,75 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      scrollLeaflet(opts: WheelEventOptions): Chainable<Element>;
+      panLeaflet(opts: PanLeafletOptions): Chainable<Element>;
+    }
+
+    interface WheelEventOptions {
+      deltaX?: number;
+      deltaY?: number;
+    }
+
+    interface PanLeafletOptions {
+      deltaX?: number;
+      deltaY?: number;
+    }
+  }
+}
+
+Cypress.Commands.add(
+  "scrollLeaflet",
+  { prevSubject: "element" },
+  ($el: JQuery<HTMLElement>, opts) => {
+    cy.log("scrolling leaflet", opts);
+
+    requestAnimationFrame(() => {
+      $el.get(0).dispatchEvent(new WheelEvent("wheel", opts));
+    });
+  }
+);
+
+Cypress.Commands.add(
+  "panLeaflet",
+  { prevSubject: "element" },
+  ($el: JQuery<HTMLElement>, { deltaX = 0, deltaY = 0 }) => {
+    const leaflet = $el.get(0);
+    const leafletBounds = leaflet.getBoundingClientRect();
+    const center = {
+      x: leafletBounds.left + leafletBounds.width / 2,
+      y: leafletBounds.top + leafletBounds.height / 2,
+    };
+
+    cy.log("panning leaflet", { deltaX, deltaY });
+
+    leaflet.dispatchEvent(
+      new MouseEvent("mousedown", {
+        clientX: center.x,
+        clientY: center.y,
+      })
+    );
+
+    leaflet.dispatchEvent(
+      new MouseEvent("mousemove", {
+        clientX: center.x + deltaX,
+        clientY: center.y + deltaY,
+        bubbles: true,
+      })
+    );
+
+    requestAnimationFrame(() => {
+      leaflet.dispatchEvent(
+        new MouseEvent("mouseup", {
+          clientX: center.x + deltaX,
+          clientY: center.y + deltaY,
+          bubbles: true,
+        })
+      );
+    });
+  }
+);
 
 export {};

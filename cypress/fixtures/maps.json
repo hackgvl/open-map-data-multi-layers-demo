@@ -1,0 +1,172 @@
+[
+  {
+    "nid": [
+      {
+        "value": 56
+      }
+    ],
+    "uuid": [
+      {
+        "value": "f3241935-2d10-4f11-b21c-344a96eaa0fa"
+      }
+    ],
+    "vid": [
+      {
+        "value": 59
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "map",
+        "target_type": "node_type",
+        "target_uuid": "53978e5d-803a-4277-a1cc-9777b157c2a2"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2017-07-25T22:21:21+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "cccc9686-695d-412c-8b00-c7e3b4f0f828",
+        "url": "/yall/1"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "cccc9686-695d-412c-8b00-c7e3b4f0f828",
+        "url": "/yall/1"
+      }
+    ],
+    "title": [
+      {
+        "value": "Art Galleries"
+      }
+    ],
+    "created": [
+      {
+        "value": "2017-07-25T22:19:35+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2023-01-01T01:51:32+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": false
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "metatag": {
+      "value": {
+        "referrer": "no-referrer",
+        "title": "Art Galleries | Open Data in Greenville SC",
+        "description": "A real-time, community-curated map layer of Art Galleries."
+      }
+    },
+    "path": [
+      {
+        "alias": "/map/art-galleries",
+        "pid": 273,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_center_point_latitude": [
+      {
+        "value": 34.8507
+      }
+    ],
+    "field_center_point_longitude": [
+      {
+        "value": -82.3985
+      }
+    ],
+    "field_contribute_link": [
+      {
+        "uri": "https://docs.google.com/spreadsheets/d/1I_T4Pgx6HgPo2NDP41e_k5eny8bnE29hHrZzl92VY1M/edit#gid=0",
+        "title": "",
+        "options": []
+      }
+    ],
+    "field_geojson_link": [
+      {
+        "uri": "internal:/map/geojson/art-galleries/",
+        "title": "",
+        "options": []
+      }
+    ],
+    "field_maintainers": [
+      {
+        "uri": "https://github.com/walkreed",
+        "title": "Walker Reed",
+        "options": []
+      }
+    ],
+    "field_map_preview_link": [
+      {
+        "uri": "internal:/map/preview/art-galleries",
+        "title": "",
+        "options": []
+      }
+    ],
+    "field_map_tags": [],
+    "field_meta_tags": [
+      {
+        "value": []
+      }
+    ],
+    "field_raw_data_link": [
+      {
+        "uri": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKrkaLfv4Ka30CDW0_Fu1DH1NGOWT7eWAbdQHETVqy2n7Kdv9jFKDXq-DptwHqbP65ljnPNLQMv4lr/pub?gid=0\u0026single=true\u0026output=csv",
+        "title": "",
+        "options": []
+      }
+    ],
+    "field_slug": [
+      {
+        "value": "art-galleries"
+      }
+    ],
+    "field_zoom_level": [
+      {
+        "value": 14
+      }
+    ]
+  }
+]
