@@ -27,8 +27,9 @@
         class="link"
         href="https://github.com/codeforgreenville/open-map-data-multi-layers-demo"
       >
-        Github </a
-      >.
+        Github
+      </a>
+      .
     </p>
   </div>
 </template>
