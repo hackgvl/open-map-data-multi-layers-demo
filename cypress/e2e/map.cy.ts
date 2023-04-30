@@ -16,7 +16,7 @@ describe("More E2E tests", () => {
   });
 
   it("Unchecks a filter and checks URL has changed", () => {
-    let prevUrl: string =
+    const prevUrl: string =
       "http://localhost:4173/open-map-data-multi-layers-demo/?lat=34.844526&lng=-82.401078&zoom=10&maps=adult-day-care";
 
     cy.visit(prevUrl);
