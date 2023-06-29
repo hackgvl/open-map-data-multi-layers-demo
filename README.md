@@ -1,6 +1,8 @@
 # Open Data Upstate / Greenville SC Map Layers Demo
 
-This is a Vue project which allows all you to dynamically toggle on/off any of the [Upstate / Greenville SC open map data layers]([url](https://data.openupstate.org/map-layers))!
+This is a Vue project which allows all you to dynamically toggle on/off any of
+the [Upstate / Greenville SC open map data
+layers](https://data.openupstate.org/map-layers)!
 
 - [View the live demo](https://hackgvl.github.io/open-map-data-multi-layers-demo/?lat=34.844526&lng=-82.401078&zoom=10)
 - Visit [the OpenData Github
