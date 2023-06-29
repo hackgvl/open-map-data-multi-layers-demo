@@ -1,18 +1,14 @@
-# OpenDataGVL Map
+# Open Data Upstate / Greenville SC Map Layers Demo
 
-This is a Vue project which allows all you to view all of Code for Greenville's
-open map data!
+This is a Vue project which allows all you to dynamically toggle on/off any of the [Upstate / Greenville SC open map data layers]([url](https://data.openupstate.org/map-layers))!
 
-- View the live demo at
-  [https://codeforgreenville.org/open-map-data-multi-layers-demo/](https://codeforgreenville.org/open-map-data-multi-layers-demo/)
-
+- [View the live demo](https://hackgvl.github.io/open-map-data-multi-layers-demo/?lat=34.844526&lng=-82.401078&zoom=10)
 - Visit [the OpenData Github
-  repo](https://github.com/codeforgreenville/OpenData/blob/master/MAPS_API.md)
+  repo](https://github.com/hackgvl/OpenData/blob/master/MAPS_API.md)
   for more information about this data.
 
 Contributions to this project or the map data is greatly appreciated! You can
-visit the [Code for Greenville](https://codeforgreenville.org) website to find
-out how to get involved.
+join the [HackGreenville Slack](https://hackgreenville.com/join-slack) #hg-labs channel to get involved. Or, comment on issues or pull requests on this repository.
 
 ---
 
@@ -107,8 +103,8 @@ npm run lint
 
 `stable`:
 
-[![run-tests](https://github.com/codeforgreenville/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=stable)](https://github.com/codeforgreenville/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
+[![run-tests](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=stable)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
 
 `develop`:
 
-[![run-tests](https://github.com/codeforgreenville/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=develop)](https://github.com/codeforgreenville/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
+[![run-tests](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=develop)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
