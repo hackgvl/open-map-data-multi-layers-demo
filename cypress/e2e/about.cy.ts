@@ -8,12 +8,12 @@ describe("About page", () => {
 
     cy.contains("About").click();
 
-    cy.contains("Greenville OpenMap Demo");
+    cy.contains("Upstate / Greenville SC Open Data Map Layers Demo");
   });
 
   it("displays information on first load", () => {
     cy.visit("/about");
 
-    cy.contains("Greenville OpenMap Demo");
+    cy.contains("Upstate / Greenville SC Open Data Map Layers Demo");
   });
 });
