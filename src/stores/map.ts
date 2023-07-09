@@ -61,10 +61,9 @@ export const useMapStore = defineStore("map", {
               )
               .map(async (mapDataJson: any) => {
                 const geoJsonUrl = new URL(
-                  mapDataJson.field_geojson_link[0].uri.replace(
-                    "internal:",
-                    "https://data.openupstate.org"
-                  )
+                  mapDataJson.field_geojson_link[0].uri
+                    .toString()
+                    .replace("internal:", "https://data.openupstate.org")
                 );
 
                 const mapData = {

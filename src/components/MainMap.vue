@@ -56,12 +56,12 @@ async function initializeMap(map: Map) {
   });
 
   map.on("overlayadd", async function (e: LayersControlEvent) {
-    const mapName = e.name.replace(/ \(.+\)$/, "");
+    const mapName = e.name.toString().replace(/ \(.+\)$/, "");
     addMapLayer(map, control, mapStore.availableMaps[mapName], true);
   });
 
   map.on("overlayremove", async function (e: LayersControlEvent) {
-    const mapName = e.name.replace(/ \(.+\)$/, "");
+    const mapName = e.name.toString().replace(/ \(.+\)$/, "");
     addMapLayer(map, control, mapStore.availableMaps[mapName], false);
   });
 }
@@ -129,11 +129,14 @@ async function addMapLayer(
             Object.keys(properties)
               .filter((key) => key != "OBJECTID" && properties[key])
               .map((key) => {
-                const propertyName = toTitleCase(key).replace(/_/g, " ");
+                const propertyName = toTitleCase(key.toString()).replace(
+                  /_/g,
+                  " "
+                );
                 let propertyValue;
                 if (
-                  properties[key].startsWith("http") ||
-                  properties[key].startsWith("tel")
+                  properties[key]?.toString().startsWith("http") ||
+                  properties[key]?.toString().startsWith("tel")
                 ) {
                   propertyValue = `<a href="${properties[key]}" target="_blank" rel="noreferrer">${properties[key]}</a>`;
                 } else {
