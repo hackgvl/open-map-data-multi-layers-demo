@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "ThorntonMatthewD",
+      "name": "Matthew Thornton",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44626690?v=4",
+      "profile": "https://github.com/ThorntonMatthewD",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "open-map-data-multi-layers-demo",
+  "projectOwner": "hackgvl"
+}
