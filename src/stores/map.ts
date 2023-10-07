@@ -49,7 +49,7 @@ export const useMapStore = defineStore("map", {
     },
     async fetchAvailableMaps() {
       if (Object.keys(this.availableMaps).length == 0) {
-        await fetch("https://data.openupstate.org/rest/maps?_format=json")
+        await fetch(`${process.env.DATA_API_BASE_URL}/rest/maps?_format=json`)
           .then((response) => response.json())
           .then((data) => {
             data
@@ -63,7 +63,7 @@ export const useMapStore = defineStore("map", {
                 const geoJsonUrl = new URL(
                   mapDataJson.field_geojson_link[0].uri
                     .toString()
-                    .replace("internal:", "https://data.openupstate.org")
+                    .replace("internal:", process.env.DATA_API_BASE_URL)
                 );
 
                 const mapData = {

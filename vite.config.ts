@@ -4,12 +4,24 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
     },
-  },
-  base: "/open-map-data-multi-layers-demo/",
+    base: "/open-map-data-multi-layers-demo/",
+    define: {
+      "process.env.DATA_API_BASE_URL": JSON.stringify(
+        mode === "test"
+          ? "http://localhost:9090"
+          : "https://data.openupstate.org"
+      ),
+    },
+    test: {
+      globalSetup: ["./src/tests/vitest.global.ts"],
+    },
+  };
 });
