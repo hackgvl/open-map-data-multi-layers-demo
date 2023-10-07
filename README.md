@@ -1,6 +1,9 @@
 # Open Data Upstate / Greenville SC Map Layers Demo
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a Vue project which allows all you to dynamically toggle on/off any of
