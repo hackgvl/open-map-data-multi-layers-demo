@@ -18,10 +18,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: |
-          npm run build
-          npm run test:unit
-          npm run test:e2e
-          npm run type-check
-          npm run lint-check
+      - name: Check formatting
+        run: npm run lint-check
+
+      - name: Check for type errors
+        run: npm run type-check
+
+      - name: Check for build errors
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
