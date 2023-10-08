@@ -2,9 +2,11 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[all-contributors-logo]: https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square "Number of contributors on All-Contributors"
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+[![All Contributors][all-contributors-logo]](#contributors-)&ensp;[![Continuous Integration](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml)
 
 This is a Vue project which allows all you to dynamically toggle on/off any of
 the [Upstate / Greenville SC open map data
@@ -117,14 +119,6 @@ npm run lint
 ```
 
 ---
-
-`stable`:
-
-[![run-tests](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=stable)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
-
-`develop`:
-
-[![run-tests](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml/badge.svg?branch=develop)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/run-tests.yml)
 
 ## Contributors ✨
 
