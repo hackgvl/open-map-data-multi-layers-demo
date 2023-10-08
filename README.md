@@ -1,6 +1,9 @@
 # Open Data Upstate / Greenville SC Map Layers Demo
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a Vue project which allows all you to dynamically toggle on/off any of
@@ -76,6 +79,15 @@ npm run build
 
 ```sh
 npm run test:unit:dev
+```
+
+**Reset Cached API Responses (Called Tapes) Used by Vitest**
+This project utilizes the [talkback](https://github.com/ijpiantanida/talkback) package to save responses received from external dependencies into fixtures (called tapes) that can be used in subsequent set suite executions.
+
+If the upstream data source's response schema is altered you can run the following command to "freshen things up" and overwrite any previously recorded responses:
+
+```sh
+OVERWRITE_TAPES=1 npm run test:unit:dev
 ```
 
 ### Run End-to-End Tests with [Cypress](https://www.cypress.io/)

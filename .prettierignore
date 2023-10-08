@@ -1,0 +1,5 @@
+// Talkback Tapes
+*.json5
+
+// Ignore bundle files
+dist/*

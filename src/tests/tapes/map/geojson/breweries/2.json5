@@ -1,0 +1,817 @@
+{
+    meta: {
+        createdAt: '2023-10-07T22:22:03.998Z',
+        host: 'https://data.openupstate.org',
+        resHumanReadable: true,
+    },
+    req: {
+        headers: {
+            connection: 'keep-alive',
+            accept: '*/*',
+            'accept-language': '*',
+            'sec-fetch-mode': 'cors',
+            'user-agent': 'undici',
+            'accept-encoding': 'gzip, deflate',
+        },
+        url: '/map/geojson/breweries/',
+        method: 'GET',
+        body: '',
+    },
+    res: {
+        status: 200,
+        headers: {
+            date: [
+                'Sat, 07 Oct 2023 22:22:04 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'cache-control': [
+                'no-cache, must-revalidate',
+            ],
+            expires: [
+                'Mon, 26 Jul 1997 05:00:00 GMT',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=100',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+            'transfer-encoding': [
+                'chunked',
+            ],
+            'content-type': [
+                'application/json; charset=utf-8',
+            ],
+        },
+        body: {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.284568,
+                            34.919719,
+                        ],
+                    },
+                    properties: {
+                        title: '13 Stripes Brewery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'No',
+                        srt_accessible: 'No',
+                        website: 'https://www.13stripesbrewery.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.345203,
+                            34.846558,
+                        ],
+                    },
+                    properties: {
+                        title: 'Quest Brewing Co. (CLOSED - 2021)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: '',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.423357,
+                            34.796685,
+                        ],
+                    },
+                    properties: {
+                        title: 'Thomas Creek Brewery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'No',
+                        srt_accessible: 'No',
+                        website: 'https://thomascreekbeer.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.415818,
+                            34.866038,
+                        ],
+                    },
+                    properties: {
+                        title: 'Birds Fly South Ale Project (CLOSED - 2023)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://www.wyff4.com/article/birds-fly-south-taproom-greenville-closing/45373722',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.348843,
+                            34.803261,
+                        ],
+                    },
+                    properties: {
+                        title: 'Brewery 85 (CLOSED - 2023)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://www.wyff4.com/article/south-carolina-brewery-85-closing/44054139',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.406642,
+                            34.838535,
+                        ],
+                    },
+                    properties: {
+                        title: 'The Eighth State Brewing Company',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.eighthstatebrewing.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.442547,
+                            34.967306,
+                        ],
+                    },
+                    properties: {
+                        title: 'Swamp Rabbit Brewery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'No',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.theswamprabbitbrewery.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.226396,
+                            34.936969,
+                        ],
+                    },
+                    properties: {
+                        title: 'The Blue Ridge Brewing Co.',
+                        dog_friendly: 'No',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.blueridgebrewing.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.396042,
+                            34.850377,
+                        ],
+                    },
+                    properties: {
+                        title: 'Fireforge Crafted Beer',
+                        dog_friendly: 'Outside',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.fireforge.beer',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.378499,
+                            34.805939,
+                        ],
+                    },
+                    properties: {
+                        title: 'Shoeless Brewing Co.',
+                        dog_friendly: 'No',
+                        food_on_site: 'No',
+                        srt_accessible: 'No',
+                        website: 'https://grapeandgrains.com/brewery/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.3396796,
+                            34.8510738,
+                        ],
+                    },
+                    properties: {
+                        title: 'Iron Hill Brewery and Restaurant',
+                        dog_friendly: 'No',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.ironhillbrewery.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.3978892,
+                            34.861524,
+                        ],
+                    },
+                    properties: {
+                        title: 'Liability Brewing Co.',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://liabilitybrewing.co',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.3967362,
+                            34.848915,
+                        ],
+                    },
+                    properties: {
+                        title: 'Yee-Haw Brewing Company',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://yeehawbrewing.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.2583474,
+                            34.7404822,
+                        ],
+                    },
+                    properties: {
+                        title: 'Rail Line Brewing - (CLOSED - 2019)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: '',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.385111,
+                            34.8585551,
+                        ],
+                    },
+                    properties: {
+                        title: 'Tetrad Brewing Co.',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'No',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.tetradbrewingco.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.359223,
+                            34.845147,
+                        ],
+                    },
+                    properties: {
+                        title: 'Think Tank Brew Lab',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'TBD',
+                        srt_accessible: 'Yes',
+                        website: 'https://thinktankbrewlab.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.9518613,
+                            34.6854826,
+                        ],
+                    },
+                    properties: {
+                        title: 'Keowee Brewing Company',
+                        dog_friendly: 'Outside',
+                        food_on_site: 'Limited',
+                        srt_accessible: 'No',
+                        website: 'https://www.facebook.com/KeoweeBrewing/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.517034,
+                            34.683379,
+                        ],
+                    },
+                    properties: {
+                        title: 'Golden Grove Farm & Brew',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://farmandbrew.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.9296417,
+                            34.9524592,
+                        ],
+                    },
+                    properties: {
+                        title: 'Ciclops Cyderi & Brewery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.ciclopscyderiandbrewery.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.9086743,
+                            34.9708248,
+                        ],
+                    },
+                    properties: {
+                        title: 'Holliday Brewing',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.facebook.com/hollidaybrewing/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.9362542,
+                            34.948626,
+                        ],
+                    },
+                    properties: {
+                        title: 'RJ Rockers Brewing',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.rjrockers.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.9907209,
+                            35.0524497,
+                        ],
+                    },
+                    properties: {
+                        title: 'New Groove Artisan Brewery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://newgroovebrew.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.224941,
+                            34.807307,
+                        ],
+                    },
+                    properties: {
+                        title: 'The Beer Den @ Lowes Foods',
+                        dog_friendly: 'No',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.lowesfoods.com/the-beer-den/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.3718886,
+                            34.8492837,
+                        ],
+                    },
+                    properties: {
+                        title: 'Double Stamp',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Outside Food Allowed',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.facebook.com/doublestampbrewery/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.4279379,
+                            34.8483776,
+                        ],
+                    },
+                    properties: {
+                        title: 'Carolina Bauernhaus Brewery & Winery',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Limited',
+                        srt_accessible: 'Yes',
+                        website: 'https://carolinabauernhaus.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.65196772,
+                            34.50567791,
+                        ],
+                    },
+                    properties: {
+                        title: 'Carolina Bauernhaus',
+                        dog_friendly: 'No',
+                        food_on_site: 'Limited',
+                        srt_accessible: 'No',
+                        website: 'https://carolinabauernhaus.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.956098,
+                            35.011571,
+                        ],
+                    },
+                    properties: {
+                        title: 'Plankowner Brewing',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://plankownerbrewing.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.408198,
+                            34.852709,
+                        ],
+                    },
+                    properties: {
+                        title: 'Nautic Brewing - (CLOSED - 2019)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://www.greenvilleonline.com/story/news/2019/04/29/nautic-brewing-open-across-miracle-hill-rescue-mission-homeless-shelter-greenville-sc/3549112002/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.260706,
+                            34.944813,
+                        ],
+                    },
+                    properties: {
+                        title: 'Southern Growl',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://thesoutherngrowl.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.6122259,
+                            34.8282768,
+                        ],
+                    },
+                    properties: {
+                        title: 'Silos Brewing',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.silosbrewing.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.2288132,
+                            34.8065073,
+                        ],
+                    },
+                    properties: {
+                        title: 'Five Forks Brewing - (CLOSED - 2022)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://upstatebusinessjournal.com/eat-drink/five-forks-brewing-to-close-permanently-friday/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.7859353,
+                            34.6842157,
+                        ],
+                    },
+                    properties: {
+                        title: 'Kite Hill Brewing',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.kitehillbrewing.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.6529382,
+                            34.5080901,
+                        ],
+                    },
+                    properties: {
+                        title: 'Magnetic South - Anderson',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://magneticsouthbeer.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.7826158,
+                            34.6498049,
+                        ],
+                    },
+                    properties: {
+                        title: 'Pendleton Brewing Company (CLOSED - 2023)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://www.postandcourier.com/greenville/tapped-out-pendleton-brewery-closes-as-more-businesses-move-to-town/article_439e47fe-1f41-11ee-bd91-a79b407c2111.html',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.6528116,
+                            34.5088144,
+                        ],
+                    },
+                    properties: {
+                        title: 'Electric City Brewing Company - (CLOSED - 2022)',
+                        dog_friendly: 'CLOSED',
+                        food_on_site: 'CLOSED',
+                        srt_accessible: 'CLOSED',
+                        website: 'https://www.facebook.com/electriccitybrewing/posts/799620921362593',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.4170734,
+                            34.8528115,
+                        ],
+                    },
+                    properties: {
+                        title: 'Southernside Brewing',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://southernsidebrewing.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.411848,
+                            34.874643,
+                        ],
+                    },
+                    properties: {
+                        title: 'Black Irish Brewing Company (PLANNED)',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'TBD',
+                        srt_accessible: 'Yes',
+                        website: 'https://www.facebook.com/blackirishbrewingco/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.41294358,
+                            34.85236594,
+                        ],
+                    },
+                    properties: {
+                        title: 'Pangaea Brewing',
+                        dog_friendly: 'Yes',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'Yes',
+                        website: 'https://pangaeabrewing.com',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.2776318,
+                            34.79372198,
+                        ],
+                    },
+                    properties: {
+                        title: 'BridgeWay Brewing Co. - (PLANNED)',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'TBD',
+                        srt_accessible: 'No',
+                        website: 'https://upstatebusinessjournal.com/eat-drink/mauldins-bridgeway-station-to-welcome-bridgeway-brewing-co/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.42907589,
+                            34.83553023,
+                        ],
+                    },
+                    properties: {
+                        title: 'Magnetic South - Greenville - Judson Mill',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://magneticsouthbeer.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.84754933,
+                            34.69187896,
+                        ],
+                    },
+                    properties: {
+                        title: 'Magnetic South - Clemson Dockside',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://magneticsouthbeer.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.38913175,
+                            34.88023562,
+                        ],
+                    },
+                    properties: {
+                        title: 'Other Lands Brewing - (PLANNED)',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://upstatebusinessjournal.com/square-feet/new-dining-bar-concept-other-lands-to-open-near-downtown-greenville-this-summer/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -81.64771491,
+                            35.07430924,
+                        ],
+                    },
+                    properties: {
+                        title: 'Peach City Brewing',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'Yes',
+                        srt_accessible: 'No',
+                        website: 'https://www.peachcitybrewing.com/',
+                    },
+                },
+                {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [
+                            -82.20090971,
+                            34.6929663,
+                        ],
+                    },
+                    properties: {
+                        title: 'Flour Mill Brewing Company (PLANNED)',
+                        dog_friendly: 'TBD',
+                        food_on_site: 'TBD',
+                        srt_accessible: 'TBD',
+                        website: 'https://scbiznews.com/news/hospitality-and-tourism/83270/',
+                    },
+                },
+            ],
+        },
+    },
+}
