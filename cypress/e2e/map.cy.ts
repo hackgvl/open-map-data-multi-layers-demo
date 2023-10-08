@@ -95,4 +95,19 @@ describe("Map", () => {
 
     cy.url().should("not.contain", "lng=-82.401078");
   });
+
+  it.only("Attribution control displays the proper message and link", () => {
+    loadMap("/");
+
+    cy.get(".leaflet-control-attribution").contains(
+      "Brought to you by HackGreenville Labs. Click here to contribute!"
+    );
+
+    // Get contribution link and ensure that the URL is as expected
+    cy.get(
+      ".leaflet-control-container > div.leaflet-bottom.leaflet-right > div > a:nth-child(2)"
+    )
+      .should("have.attr", "href")
+      .and("match", /https:\/\/data.openupstate.org\/contribute/);
+  });
 });
