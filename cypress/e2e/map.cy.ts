@@ -96,7 +96,7 @@ describe("Map", () => {
     cy.url().should("not.contain", "lng=-82.401078");
   });
 
-  it.only("Attribution control displays the proper message and link", () => {
+  it("Attribution control displays the proper message and link", () => {
     loadMap("/");
 
     cy.get(".leaflet-control-attribution").contains(
