@@ -31,4 +31,15 @@ jobs:
         run: npm run test:unit
 
       - name: Run end-to-end tests
+        id: e2eTests
         run: npm run test:e2e
+
+      # Uploads the failure screenshots produced by Cypress
+      - uses: actions/upload-artifact@v3
+        if: always() && (steps.e2eTests.outcome == 'failure')
+        name: Upload Cypress failure screenshots
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/**/*.png
+          if-no-files-found: ignore
+          retention-days: 1
