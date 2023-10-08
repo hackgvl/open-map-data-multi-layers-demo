@@ -5,7 +5,11 @@ import type { Map, GeoJSON, LayersControlEvent } from "leaflet";
 </script>
 
 <script setup lang="ts">
-import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LControlAttribution,
+} from "@vue-leaflet/vue-leaflet";
 import { useMapStore } from "../stores/map";
 import { useRoute, useRouter } from "vue-router";
 import type { Feature } from "geojson";
@@ -203,13 +207,21 @@ function toTitleCase(string: string) {
       :minZoom="7"
       :maxZoom="20"
       :center="mapStore.locationArray"
+      :options="{
+        attributionControl: false,
+      }"
       @ready="initializeMap"
     >
+      <l-control-attribution
+        position="bottomright"
+        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>. <a href='https://data.openupstate.org/contribute'>Click here</a> to contribute!"
+      />
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
-      ></l-tile-layer>
+        attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+      />
     </l-map>
   </div>
 </template>
