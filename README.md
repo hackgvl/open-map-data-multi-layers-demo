@@ -1,9 +1,7 @@
 # Open Data Upstate / Greenville SC Map Layers Demo
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
 [all-contributors-logo]: https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square "Number of contributors on All-Contributors"
-
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![All Contributors][all-contributors-logo]](#contributors-)&ensp;[![Continuous Integration](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml)
