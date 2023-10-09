@@ -3,3 +3,6 @@
 
 // Ignore bundle files
 dist/*
+
+// Ignore the README to avoid conflicts with the All Contributors bot
+README.md
