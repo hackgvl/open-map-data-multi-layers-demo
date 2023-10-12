@@ -16,6 +16,26 @@ export type MapSlug = string;
  */
 export type Color = string;
 
+/*
+ * A person or organization responsible for contributing data to our
+ * platform in some fashion.
+ */
+export type AttributedEntity = {
+  title: string;
+  uri: string;
+  options: Array<string>;
+};
+
+/**
+ * A person who has provided features for one of the map layer's data sets.
+ */
+export type Maintainer = AttributedEntity;
+
+/**
+ * Information on where one could access a data set and perhaps edit it.
+ */
+export type ContributionInformation = AttributedEntity;
+
 /**
  * Represents an object with all the available details for a map
  */
@@ -25,6 +45,8 @@ export type MapData = {
   geoJsonUrl: URL;
   color: Color;
   geoJson?: GeoJSON;
+  maintainers: Array<Maintainer>;
+  contributionInfo: ContributionInformation;
 };
 
 /**
@@ -34,4 +56,13 @@ export type LayerData = {
   layer: LGeoJSON;
   loaded: boolean;
   visible: boolean;
+};
+
+/**
+ * Represents information around who maintains a map and where their data is stored.
+ */
+export type MaintainerData = {
+  maintainedMapTitle: string;
+  contributionInfo: ContributionInformation;
+  maintainers: Array<Maintainer>;
 };

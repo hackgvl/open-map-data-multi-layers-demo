@@ -1,10 +1,11 @@
 <script lang="ts">
 import "leaflet/dist/leaflet.css";
-import L, { LatLng } from "leaflet";
+import L, { LatLng, map } from "leaflet";
 import type { Map, GeoJSON, LayersControlEvent } from "leaflet";
 </script>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import {
   LMap,
   LTileLayer,
@@ -13,11 +14,15 @@ import {
 import { useMapStore } from "../stores/map";
 import { useRoute, useRouter } from "vue-router";
 import type { Feature } from "geojson";
-import type { MapData, MapSlug, LayerData } from "../types";
+import type { MapData, MapSlug, LayerData, MaintainerData } from "../types";
+import MaintainersViewerControl from "./MaintainersViewerControl.vue";
 
 const mapStore = useMapStore();
 const router = useRouter();
 const route = useRoute();
+
+// Used to delay certain actions until after the map has been initialized
+const mapInitialized = ref(false);
 
 // get map information from query params
 if (typeof route.query.lat == "string" && typeof route.query.lng == "string") {
@@ -36,21 +41,21 @@ if (typeof route.query.maps == "string") {
 }
 
 async function initializeMap(map: Map) {
-  const control = L.control.layers(undefined, undefined, {
+  const layersControl = L.control.layers(undefined, undefined, {
     hideSingleBase: true,
     sortLayers: true,
   });
 
   for (const mapTitle in await mapStore.fetchAvailableMaps()) {
     const mapData = mapStore.availableMaps[mapTitle];
-    await addMapLayer(map, control, mapData, false);
+    await addMapLayer(map, layersControl, mapData, false);
 
     if (mapsToEnable.has(mapData.mapSlug)) {
-      addMapLayer(map, control, mapData, true);
+      addMapLayer(map, layersControl, mapData, true);
     }
   }
 
-  control.addTo(map);
+  layersControl.addTo(map);
 
   // set callbacks
   map.on("moveend zoomend", function () {
@@ -61,13 +66,15 @@ async function initializeMap(map: Map) {
 
   map.on("overlayadd", async function (e: LayersControlEvent) {
     const mapName = e.name.toString().replace(/ \(.+\)$/, "");
-    addMapLayer(map, control, mapStore.availableMaps[mapName], true);
+    addMapLayer(map, layersControl, mapStore.availableMaps[mapName], true);
   });
 
   map.on("overlayremove", async function (e: LayersControlEvent) {
     const mapName = e.name.toString().replace(/ \(.+\)$/, "");
-    addMapLayer(map, control, mapStore.availableMaps[mapName], false);
+    addMapLayer(map, layersControl, mapStore.availableMaps[mapName], false);
   });
+
+  mapInitialized.value = true;
 }
 
 /*
@@ -82,10 +89,15 @@ async function addMapLayer(
 ) {
   // if layer is already fully loaded, just update the visibility in the store
   const layerData = mapStore.loadedMaps[mapData.mapSlug];
+  const maintainerData: MaintainerData = {
+    contributionInfo: mapData.contributionInfo,
+    maintainedMapTitle: mapData.mapTitle,
+    maintainers: mapData.maintainers,
+  };
 
-  if (layerData && layerData.loaded) {
+  if (layerData?.loaded) {
     layerData.visible = visible;
-    mapStore.addMapLayer(mapData.mapSlug, layerData);
+    mapStore.addMapLayer(mapData.mapSlug, layerData, maintainerData);
     setUrl();
     return;
   }
@@ -161,7 +173,7 @@ async function addMapLayer(
   }
 
   const newLayerData: LayerData = { layer, loaded: visible, visible };
-  mapStore.addMapLayer(mapData.mapSlug, newLayerData);
+  mapStore.addMapLayer(mapData.mapSlug, newLayerData, maintainerData);
 
   if (visible) {
     mapStore.fetchGeoJson(mapData).then((response) => {
@@ -214,13 +226,19 @@ function toTitleCase(string: string) {
     >
       <l-control-attribution
         position="bottomright"
-        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>. <a href='https://data.openupstate.org/contribute'>Click here</a> to contribute!"
+        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>. <a href='https://data.openupstate.org/contribute'>Click here to contribute</a>!"
       />
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
         attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+      />
+      <MaintainersViewerControl
+        v-if="
+          mapInitialized &&
+          Object.keys(mapStore.maintainersOfActiveLayers).length > 0
+        "
       />
     </l-map>
   </div>
