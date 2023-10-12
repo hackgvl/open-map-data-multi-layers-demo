@@ -50,7 +50,11 @@ const showMaintainers = ref(false);
             v-for="maintainer in maintainerInfo.maintainers"
             :key="maintainer.title"
           >
-            <a v-if="maintainer.uri.length > 0" :href="maintainer.uri">
+            <a
+              v-if="maintainer.uri.length > 0"
+              :href="maintainer.uri"
+              target="_blank"
+            >
               {{ maintainer.title }}
             </a>
             <span class="text-zinc-900" v-else>{{ maintainer.title }}</span>
