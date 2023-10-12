@@ -26,7 +26,7 @@ const showMaintainers = ref(false);
       class="w-64 md:w-[256px] lg:w-[512px] px-2 max-h-[75vh] md:max-w-max overflow-y-auto"
       v-if="showMaintainers"
     >
-      <h1 class="text-slate-950 text-xl font-bold py-2">
+      <h1 class="text-slate-950 text-lg sm:text-xl font-bold py-2">
         Maintainers of Active Layers:
       </h1>
       <div
@@ -34,7 +34,7 @@ const showMaintainers = ref(false);
         v-for="(maintainerInfo, name) in mapStore.maintainersOfActiveLayers"
         :key="name"
       >
-        <h2 class="text-slate-800 text-base font-bold">
+        <h2 class="text-slate-800 text-sm sm:text-base font-bold">
           {{ maintainerInfo.maintainedMapTitle }}
           <span v-if="maintainerInfo.contributionInfo">
             -
