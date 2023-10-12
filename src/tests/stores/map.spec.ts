@@ -1,10 +1,13 @@
 import { describe, it, expect, beforeEach, expectTypeOf } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 import { useMapStore } from "../../stores/map";
+import { sampleMaintainerData } from "../data/maintainers";
 import L from "leaflet";
 import type { GeoJSON } from "geojson";
 import type { MapData, LayerData } from "../../types";
 import type { LatLng } from "leaflet";
+
+const fakeMapSlug = "my-cool-slug";
 
 describe("mapStore", () => {
   beforeEach(() => {
@@ -75,7 +78,7 @@ describe("mapStore", () => {
     expectTypeOf(fetchResult).toMatchTypeOf<GeoJSON | undefined>();
   });
 
-  it("adds a map layer", async () => {
+  it("adds a map layer, but since it's not visible the maintainer provided is ignored", async () => {
     const mapStore = useMapStore();
     expect(mapStore.loadedMaps).toStrictEqual({});
     const layerData: LayerData = {
@@ -83,8 +86,53 @@ describe("mapStore", () => {
       loaded: false,
       visible: false,
     };
-    mapStore.addMapLayer("my-cool-slug", layerData);
-    expect(mapStore.loadedMaps["my-cool-slug"]).toStrictEqual(layerData);
+
+    mapStore.addMapLayer(fakeMapSlug, layerData, sampleMaintainerData);
+    expect(mapStore.loadedMaps[fakeMapSlug]).toStrictEqual(layerData);
+    expect(mapStore.maintainersOfActiveLayers).toStrictEqual({});
+  });
+
+  it("adds a visible map layer, so the maintainer data is persisted too", async () => {
+    const mapStore = useMapStore();
+    expect(mapStore.loadedMaps).toStrictEqual({});
+    const layerData: LayerData = {
+      layer: L.geoJSON([]),
+      loaded: true,
+      visible: true,
+    };
+
+    mapStore.addMapLayer(fakeMapSlug, layerData, sampleMaintainerData);
+    expect(mapStore.loadedMaps[fakeMapSlug]).toStrictEqual(layerData);
+    expect(Object.keys(mapStore.maintainersOfActiveLayers).length).toBe(1);
+    expect(mapStore.maintainersOfActiveLayers[fakeMapSlug]).toStrictEqual(
+      sampleMaintainerData
+    );
+  });
+
+  it("whenever a layer is made invisible the maintainer is removed from maintainersOfActiveLayers", async () => {
+    const mapStore = useMapStore();
+    expect(mapStore.loadedMaps).toStrictEqual({});
+    const visibleLayerData: LayerData = {
+      layer: L.geoJSON([]),
+      loaded: true,
+      visible: true,
+    };
+
+    const invisibleLayerData: LayerData = {
+      layer: L.geoJSON([]),
+      loaded: false,
+      visible: false,
+    };
+
+    // Add the layer as VISIBLE - the maintainer will be added to mapStore.maintainersOfActiveLayers
+    mapStore.addMapLayer(fakeMapSlug, visibleLayerData, sampleMaintainerData);
+    expect(mapStore.maintainersOfActiveLayers[fakeMapSlug]).toStrictEqual(
+      sampleMaintainerData
+    );
+
+    // Set the layer to be INVISIBLE, thus removing the maintainer from the active list
+    mapStore.addMapLayer(fakeMapSlug, invisibleLayerData, sampleMaintainerData);
+    expect(Object.keys(mapStore.maintainersOfActiveLayers).length).toBe(0);
   });
 
   it("removes a map layer", async () => {
@@ -94,8 +142,8 @@ describe("mapStore", () => {
       loaded: false,
       visible: false,
     };
-    mapStore.loadedMaps["my-cool-slug"] = layerData;
-    mapStore.removeMapLayer("my-cool-slug");
+    mapStore.loadedMaps[fakeMapSlug] = layerData;
+    mapStore.removeMapLayer(fakeMapSlug);
     expect(mapStore.loadedMaps).toStrictEqual({});
   });
 });

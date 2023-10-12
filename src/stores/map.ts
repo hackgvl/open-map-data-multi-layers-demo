@@ -1,6 +1,12 @@
 import { defineStore } from "pinia";
 import type { GeoJSON } from "geojson";
-import type { MapSlug, MapTitle, MapData, LayerData } from "../types";
+import type {
+  MapSlug,
+  MapTitle,
+  MapData,
+  LayerData,
+  MaintainerData,
+} from "../types";
 import type { LatLng } from "leaflet";
 
 export const useMapStore = defineStore("map", {
@@ -9,6 +15,7 @@ export const useMapStore = defineStore("map", {
     location: { lat: 34.844526, lng: -82.401078 } as LatLng,
     loadedMaps: {} as { [mapSlug: MapSlug]: LayerData },
     availableMaps: {} as { [mapTitle: MapTitle]: MapData },
+    maintainersOfActiveLayers: {} as { [mapTitle: MapTitle]: MaintainerData },
   }),
   getters: {
     locationArray({ location: { lat, lng } }) {
@@ -22,7 +29,15 @@ export const useMapStore = defineStore("map", {
     setZoom(zoom: number) {
       this.zoom = zoom;
     },
-    addMapLayer(mapSlug: MapSlug, layerData: LayerData) {
+    addMapLayer(
+      mapSlug: MapSlug,
+      layerData: LayerData,
+      maintainers: MaintainerData
+    ) {
+      layerData.visible
+        ? (this.maintainersOfActiveLayers[mapSlug] = maintainers)
+        : delete this.maintainersOfActiveLayers[mapSlug];
+
       this.loadedMaps[mapSlug] = layerData;
     },
     removeMapLayer(mapSlug: MapSlug) {
@@ -71,6 +86,8 @@ export const useMapStore = defineStore("map", {
                   mapTitle: mapDataJson.title[0].value,
                   geoJsonUrl: geoJsonUrl,
                   color: getRandomColor(mapDataJson.field_slug[0].value),
+                  maintainers: mapDataJson.field_maintainers,
+                  contributionInfo: mapDataJson.field_contribute_link[0],
                 };
 
                 this.availableMaps[mapData.mapTitle] = mapData;
