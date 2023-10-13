@@ -1,6 +1,6 @@
 <script lang="ts">
 import "leaflet/dist/leaflet.css";
-import L, { LatLng, map } from "leaflet";
+import L, { LatLng } from "leaflet";
 import type { Map, GeoJSON, LayersControlEvent } from "leaflet";
 </script>
 
