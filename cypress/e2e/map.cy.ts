@@ -117,13 +117,13 @@ describe("Map", () => {
     it("The Maintainer Control is NOT visible if there are no active layers", () => {
       loadMap("/");
 
-      cy.get(".leaflet-control-maintainers").should("not.exist");
+      cy.get("[title='Maintainers']").should("not.exist");
     });
 
     it("The Maintainer Control is visible with active layers", () => {
       loadMap("/?maps=art-galleries");
 
-      cy.get(".leaflet-control-maintainers").should("exist");
+      cy.get("[title='Maintainers']").should("exist");
       cy.get("[title='Maintainers']").trigger("mouseover");
 
       // Map name appears
@@ -148,14 +148,14 @@ describe("Map", () => {
 
     it("The Maintainer Control disappears if all layers are unchecked", () => {
       loadMap("/?maps=art-galleries");
-      cy.get(".leaflet-control-maintainers").should("exist");
+      cy.get("[title='Maintainers']").should("exist");
 
       // Disable the art galleries layer
       cy.get("[title='Layers']").trigger("mouseover");
       cy.get(".leaflet-control-layers-overlays label input[checked]").click();
 
       // Maintainer control should not be visible any longer
-      cy.get(".leaflet-control-maintainers").should("not.exist");
+      cy.get("[title='Maintainers']").should("not.exist");
     });
   });
 });
