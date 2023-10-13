@@ -74,7 +74,7 @@ const showMaintainers = ref(false);
 }
 
 .leaflet-control-maintainers-toggle {
-  background-image: url("src/assets/attribution.png");
+  background-image: url("@/assets/attribution.png");
   background-repeat: no-repeat;
   background-position: center;
   width: 44px;
