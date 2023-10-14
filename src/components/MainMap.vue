@@ -27,7 +27,7 @@ const mapInitialized = ref(false);
 // get map information from query params
 if (typeof route.query.lat == "string" && typeof route.query.lng == "string") {
   mapStore.setLocation(
-    new L.LatLng(Number(route.query.lat), Number(route.query.lng))
+    new L.LatLng(Number(route.query.lat), Number(route.query.lng)),
   );
 }
 
@@ -85,7 +85,7 @@ async function addMapLayer(
   map: Map,
   control: L.Control.Layers,
   mapData: MapData,
-  visible: boolean
+  visible: boolean,
 ) {
   // if layer is already fully loaded, just update the visibility in the store
   const layerData = mapStore.loadedMaps[mapData.mapSlug];
@@ -147,7 +147,7 @@ async function addMapLayer(
               .map((key) => {
                 const propertyName = toTitleCase(key.toString()).replace(
                   /_/g,
-                  " "
+                  " ",
                 );
                 let propertyValue;
                 if (

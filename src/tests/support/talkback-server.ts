@@ -14,7 +14,7 @@ const record_mode = () => {
   }
 
   console.log(
-    "Attempting to reuse existing tapes and will save anything new that I come across."
+    "Attempting to reuse existing tapes and will save anything new that I come across.",
   );
   return talkback.Options.RecordMode.NEW;
 };

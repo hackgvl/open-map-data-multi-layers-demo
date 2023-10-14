@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       "process.env.DATA_API_BASE_URL": JSON.stringify(
         mode === "test"
           ? "http://localhost:9090"
-          : "https://data.openupstate.org"
+          : "https://data.openupstate.org",
       ),
     },
     test: {
