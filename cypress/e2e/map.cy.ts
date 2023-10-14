@@ -101,12 +101,12 @@ describe("Map", () => {
       loadMap("/");
 
       cy.get(".leaflet-control-attribution").contains(
-        "Brought to you by HackGreenville Labs. Click here to contribute!"
+        "Brought to you by HackGreenville Labs. Click here to contribute!",
       );
 
       // Get contribution link and ensure that the URL is as expected
       cy.get(
-        ".leaflet-control-container > div.leaflet-bottom.leaflet-right > div > a:nth-child(2)"
+        ".leaflet-control-container > div.leaflet-bottom.leaflet-right > div > a:nth-child(2)",
       )
         .should("have.attr", "href")
         .and("match", /https:\/\/data.openupstate.org\/contribute/);
@@ -134,7 +134,7 @@ describe("Map", () => {
         .should("have.attr", "href")
         .and(
           "match",
-          /https:\/\/docs.google.com\/spreadsheets\/d\/1I_T4Pgx6HgPo2NDP41e_k5eny8bnE29hHrZzl92VY1M\/edit#gid=0/
+          /https:\/\/docs.google.com\/spreadsheets\/d\/1I_T4Pgx6HgPo2NDP41e_k5eny8bnE29hHrZzl92VY1M\/edit#gid=0/,
         );
 
       // User with a provided uri appears as a link

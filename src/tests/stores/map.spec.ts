@@ -61,7 +61,7 @@ describe("mapStore", () => {
     expect(fetchResult["Breweries"].mapTitle).toBe("Breweries");
     expect(fetchResult["Breweries"].mapSlug).toBe("breweries");
     expect(fetchResult["Breweries"].geoJsonUrl.toString()).toBe(
-      `${process.env.DATA_API_BASE_URL}/map/geojson/breweries/`
+      `${process.env.DATA_API_BASE_URL}/map/geojson/breweries/`,
     );
   });
 
@@ -73,7 +73,7 @@ describe("mapStore", () => {
 
     const fetchResult = await mapStore.fetchGeoJson(mapData);
     expect(mapStore.availableMaps["Breweries"].geoJson).toStrictEqual(
-      fetchResult
+      fetchResult,
     );
     expectTypeOf(fetchResult).toMatchTypeOf<GeoJSON | undefined>();
   });
@@ -105,7 +105,7 @@ describe("mapStore", () => {
     expect(mapStore.loadedMaps[fakeMapSlug]).toStrictEqual(layerData);
     expect(Object.keys(mapStore.maintainersOfActiveLayers).length).toBe(1);
     expect(mapStore.maintainersOfActiveLayers[fakeMapSlug]).toStrictEqual(
-      sampleMaintainerData
+      sampleMaintainerData,
     );
   });
 
@@ -127,7 +127,7 @@ describe("mapStore", () => {
     // Add the layer as VISIBLE - the maintainer will be added to mapStore.maintainersOfActiveLayers
     mapStore.addMapLayer(fakeMapSlug, visibleLayerData, sampleMaintainerData);
     expect(mapStore.maintainersOfActiveLayers[fakeMapSlug]).toStrictEqual(
-      sampleMaintainerData
+      sampleMaintainerData,
     );
 
     // Set the layer to be INVISIBLE, thus removing the maintainer from the active list

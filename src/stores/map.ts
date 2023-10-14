@@ -32,7 +32,7 @@ export const useMapStore = defineStore("map", {
     addMapLayer(
       mapSlug: MapSlug,
       layerData: LayerData,
-      maintainers: MaintainerData
+      maintainers: MaintainerData,
     ) {
       layerData.visible
         ? (this.maintainersOfActiveLayers[mapSlug] = maintainers)
@@ -54,7 +54,7 @@ export const useMapStore = defineStore("map", {
           .catch((error) => {
             console.error(
               `error while fetching ${mapData.mapSlug} geoJson from ${mapData.geoJsonUrl}`,
-              error
+              error,
             );
             Promise.reject();
           });
@@ -72,13 +72,13 @@ export const useMapStore = defineStore("map", {
                 (mapData: any) =>
                   mapData?.field_slug?.[0]?.value &&
                   mapData?.field_geojson_link?.[0]?.uri &&
-                  mapData?.title?.[0]?.value
+                  mapData?.title?.[0]?.value,
               )
               .map(async (mapDataJson: any) => {
                 const geoJsonUrl = new URL(
                   mapDataJson.field_geojson_link[0].uri
                     .toString()
-                    .replace("internal:", process.env.DATA_API_BASE_URL)
+                    .replace("internal:", process.env.DATA_API_BASE_URL),
                 );
 
                 const mapData = {

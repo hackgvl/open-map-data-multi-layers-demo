@@ -53,7 +53,7 @@ Cypress.Commands.add(
     requestAnimationFrame(() => {
       $el.get(0).dispatchEvent(new WheelEvent("wheel", opts));
     });
-  }
+  },
 );
 
 Cypress.Commands.add(
@@ -73,7 +73,7 @@ Cypress.Commands.add(
       new MouseEvent("mousedown", {
         clientX: center.x,
         clientY: center.y,
-      })
+      }),
     );
 
     leaflet.dispatchEvent(
@@ -81,7 +81,7 @@ Cypress.Commands.add(
         clientX: center.x + deltaX,
         clientY: center.y + deltaY,
         bubbles: true,
-      })
+      }),
     );
 
     requestAnimationFrame(() => {
@@ -90,10 +90,10 @@ Cypress.Commands.add(
           clientX: center.x + deltaX,
           clientY: center.y + deltaY,
           bubbles: true,
-        })
+        }),
       );
     });
-  }
+  },
 );
 
 export {};

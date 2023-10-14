@@ -1,7 +1,7 @@
 describe("About page", () => {
   it("displays information after navigating to tab", () => {
     cy.intercept("https://data.openupstate.org/rest/maps?_format=json").as(
-      "mapsList"
+      "mapsList",
     );
     cy.visit("/");
     cy.wait("@mapsList");
