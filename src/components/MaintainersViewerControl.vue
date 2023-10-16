@@ -39,7 +39,7 @@ const showMaintainers = ref(false);
           <span v-if="maintainerInfo.contributionInfo">
             -
             <a :href="maintainerInfo.contributionInfo.uri" target="_blank">
-              Contribute
+              Source
             </a>
           </span>
         </h2>
