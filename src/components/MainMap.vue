@@ -229,13 +229,13 @@ function toTitleCase(string: string) {
     >
       <l-control-attribution
         position="bottomright"
-        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>."
+        prefix="Brought to you by <a href='https://hackgreenville.com/' target='_blank'>HackGreenville Labs</a>."
       />
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         layer-type="base"
         name="OpenStreetMap"
-        attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+        attribution="© <a href='https://www.openstreetmap.org/copyright' target='_blank'>OpenStreetMap</a> contributors"
       />
       <MaintainersViewerControl
         v-if="
