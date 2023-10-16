@@ -48,11 +48,14 @@ async function initializeMap(map: Map) {
 
   for (const mapTitle in await mapStore.fetchAvailableMaps()) {
     const mapData = mapStore.availableMaps[mapTitle];
-    await addMapLayer(map, layersControl, mapData, false);
 
-    if (mapsToEnable.has(mapData.mapSlug)) {
-      addMapLayer(map, layersControl, mapData, true);
-    }
+    await addMapLayer(
+      map,
+      layersControl,
+      mapData,
+      // Enable a map layer right away if it is listed in the query params
+      mapsToEnable.has(mapData.mapSlug),
+    );
   }
 
   layersControl.addTo(map);

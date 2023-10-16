@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useRouter, RouterLink, RouterView } from "vue-router";
 import { useMapStore } from "./stores/map";
+import { useUIStore } from "./stores/ui";
+import ContributionBanner from "./components/ContributionBanner.vue";
 
 const mapStore = useMapStore();
+const uiStore = useUIStore();
 const router = useRouter();
 
 function mapLink() {
@@ -25,6 +28,9 @@ function mapLink() {
 
 <template>
   <div class="h-full w-full pb-12">
+    <Transition name="fade">
+      <ContributionBanner v-if="uiStore.showContributionBanner" />
+    </Transition>
     <RouterView />
   </div>
 
@@ -39,3 +45,15 @@ function mapLink() {
     </nav>
   </header>
 </template>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
