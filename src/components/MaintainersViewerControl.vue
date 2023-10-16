@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useMapStore } from "../stores/map";
 import { LControl } from "@vue-leaflet/vue-leaflet";
+import ContributionButton from "./ContributionButton.vue";
 
 const mapStore = useMapStore();
 
@@ -27,8 +28,9 @@ const showMaintainers = ref(false);
       v-if="showMaintainers"
     >
       <h1 class="text-slate-950 text-lg sm:text-xl font-bold py-2">
-        Maintainers of Active Layers:
+        Maintainers of Active Layers
       </h1>
+      <ContributionButton />
       <div
         class="mb-2"
         v-for="(maintainerInfo, name) in mapStore.maintainersOfActiveLayers"
