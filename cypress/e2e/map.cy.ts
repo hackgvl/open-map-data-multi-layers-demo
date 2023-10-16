@@ -126,11 +126,17 @@ describe("Map", () => {
       cy.get("[title='Maintainers']").should("exist");
       cy.get("[title='Maintainers']").trigger("mouseover");
 
+      // Contribution button appears
+      cy.contains("Click here to learn how to contribute!")
+        .parent()
+        .should("have.attr", "href")
+        .and("match", /https:\/\/data.openupstate.org\/map-layers/);
+
       // Map name appears
       cy.contains("Art Galleries");
 
-      // Contribution link appears
-      cy.contains("Contribute")
+      // Source link appears
+      cy.contains("Data Source")
         .should("have.attr", "href")
         .and(
           "match",
