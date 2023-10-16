@@ -229,7 +229,7 @@ function toTitleCase(string: string) {
     >
       <l-control-attribution
         position="bottomright"
-        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>. <a href='https://data.openupstate.org/contribute'>Click here to contribute</a>!"
+        prefix="Brought to you by <a href='https://hackgreenville.com/'>HackGreenville Labs</a>."
       />
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

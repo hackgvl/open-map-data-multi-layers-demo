@@ -9,7 +9,7 @@ describe("Contribution Banner", () => {
     cy.visit(url);
 
     cy.contains("We're Open Source!");
-    cy.contains("Click here to contribute")
+    cy.contains("Learn how to contribute")
       .should("have.attr", "href")
       .and("match", /https:\/\/data.openupstate.org\/map-layers/);
   };
@@ -17,28 +17,28 @@ describe("Contribution Banner", () => {
   const bannerCanBeClosed = (url: string) => {
     cy.visit(url);
 
-    cy.contains("Click here to contribute");
+    cy.contains("Learn how to contribute");
 
     closeBanner();
 
     // Banner should no longer be visible.
-    cy.get("Click here to contribute").should("not.exist");
+    cy.get("Learn how to contribute").should("not.exist");
   };
 
   const bannerRemainsClosedAfterRefresh = (url: string) => {
     cy.visit(url);
 
-    cy.contains("Click here to contribute");
+    cy.contains("Learn how to contribute");
 
     closeBanner();
 
-    cy.get("Click here to contribute").should("not.exist");
+    cy.get("Learn how to contribute").should("not.exist");
 
     // Refresh the page
     cy.reload();
 
     // Banner should still not be visible.
-    cy.get("Click here to contribute").should("not.exist");
+    cy.get("Learn how to contribute").should("not.exist");
   };
 
   describe("Map Page", () => {

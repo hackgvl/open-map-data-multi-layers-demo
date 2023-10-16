@@ -30,7 +30,9 @@ const showMaintainers = ref(false);
       <h1 class="text-slate-950 text-lg sm:text-xl font-bold py-2">
         Maintainers of Active Layers
       </h1>
-      <ContributionButton />
+      <div class="mb-2">
+        <ContributionButton />
+      </div>
       <div
         class="mb-2"
         v-for="(maintainerInfo, name) in mapStore.maintainersOfActiveLayers"

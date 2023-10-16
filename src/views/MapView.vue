@@ -4,6 +4,6 @@ import MainMap from "../components/MainMap.vue";
 
 <template>
   <Suspense>
-    <MainMap class="fixed" />
+    <MainMap />
   </Suspense>
 </template>

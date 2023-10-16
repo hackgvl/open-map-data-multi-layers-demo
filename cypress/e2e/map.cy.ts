@@ -97,19 +97,12 @@ describe("Map", () => {
   });
 
   describe("Attribution Control", () => {
-    it("Attribution control displays the proper message and link", () => {
+    it("Attribution control displays the proper message", () => {
       loadMap("/");
 
       cy.get(".leaflet-control-attribution").contains(
-        "Brought to you by HackGreenville Labs. Click here to contribute!",
+        "Brought to you by HackGreenville Labs.",
       );
-
-      // Get contribution link and ensure that the URL is as expected
-      cy.get(
-        ".leaflet-control-container > div.leaflet-bottom.leaflet-right > div > a:nth-child(2)",
-      )
-        .should("have.attr", "href")
-        .and("match", /https:\/\/data.openupstate.org\/contribute/);
     });
   });
 
@@ -127,7 +120,7 @@ describe("Map", () => {
       cy.get("[title='Maintainers']").trigger("mouseover");
 
       // Contribution button appears
-      cy.contains("Click here to learn how to contribute!")
+      cy.contains("Learn how to contribute!")
         .parent()
         .should("have.attr", "href")
         .and("match", /https:\/\/data.openupstate.org\/map-layers/);

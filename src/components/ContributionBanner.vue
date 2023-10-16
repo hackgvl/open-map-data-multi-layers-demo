@@ -25,7 +25,7 @@ const uiStore = useUIStore();
           href="https://data.openupstate.org/map-layers"
           target="_blank"
         >
-          Click here to contribute
+          Learn how to contribute
           <span aria-hidden="true">→</span>
         </a>
       </p>
