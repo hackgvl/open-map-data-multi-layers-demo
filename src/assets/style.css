@@ -6,3 +6,8 @@
   @apply underline hover:text-white active:text-white;
   @apply transition-all duration-300 ease-in-out;
 }
+
+/* Workaround for mobile viewports */
+.h-full-screen {
+  @apply fixed h-full overscroll-none;
+}
