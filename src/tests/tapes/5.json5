@@ -1,0 +1,85 @@
+{
+    meta: {
+        createdAt: '2023-10-18T00:29:21.148Z',
+        host: 'https://data.openupstate.org',
+    },
+    req: {
+        headers: {
+            accept: 'text/html, application/json, text/plain, */*',
+            'user-agent': 'axios/0.27.2',
+            connection: 'keep-alive',
+        },
+        url: '/',
+        method: 'HEAD',
+        body: '',
+    },
+    res: {
+        status: 200,
+        headers: {
+            date: [
+                'Thu, 07 Sep 2023 05:47:18 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'cache-control': [
+                'max-age=86400, public',
+            ],
+            'x-drupal-dynamic-cache': [
+                'MISS',
+            ],
+            'x-ua-compatible': [
+                'IE=edge',
+            ],
+            'content-language': [
+                'en',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'x-frame-options': [
+                'SAMEORIGIN',
+            ],
+            expires: [
+                'Sun, 19 Nov 1978 05:00:00 GMT',
+            ],
+            vary: [
+                'Cookie',
+            ],
+            'x-generator': [
+                'Drupal 9 (https://www.drupal.org)',
+            ],
+            'x-drupal-cache': [
+                'HIT',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'last-modified': [
+                'Thu, 07 Sep 2023 05:47:17 GMT',
+            ],
+            etag: [
+                '"1694065637"',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=100',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+            'content-type': [
+                'text/html; charset=UTF-8',
+            ],
+        },
+        body: '',
+    },
+}
