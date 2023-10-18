@@ -1,15 +1,6 @@
 describe("Map", () => {
   function loadMap(path: string) {
-    cy.intercept("https://*.tile.openstreetmap.org/**", {
-      fixture: "images/tile.png",
-    }).as("tiles");
-    cy.intercept("https://data.openupstate.org/rest/maps?_format=json", {
-      fixture: "maps.json",
-    }).as("mapsList");
-
     cy.visit(path);
-
-    cy.wait(["@mapsList", "@tiles"]);
 
     cy.url()
       .should("contain", "lat=")
@@ -17,33 +8,20 @@ describe("Map", () => {
       .should("contain", "zoom=");
   }
 
-  function waitForLayer(func: Function) {
-    cy.intercept("https://data.openupstate.org/**", {
-      fixture: "art-galleries.json",
-    }).as("layer");
-
-    func();
-
-    cy.wait("@layer");
-  }
-
   it("adds a map layer and changes URL", () => {
     loadMap("/");
 
-    waitForLayer(() => {
-      cy.get("[title='Layers']").trigger("mouseover");
-      cy.get(".leaflet-control-layers-overlays label input").click();
-    });
+    cy.get("[title='Layers']").trigger("mouseover");
+    cy.get(".leaflet-control-layers-overlays label input").first().click();
 
     cy.url().should("contain", "maps=");
   });
 
   it("unchecks a map layer and changes URL", () => {
-    waitForLayer(() => {
-      loadMap("/?maps=art-galleries");
-      cy.get("[title='Layers']").trigger("mouseover");
-      cy.get(".leaflet-control-layers-overlays label input[checked]").click();
-    });
+    loadMap("/?maps=adult-day-care");
+
+    cy.get("[title='Layers']").trigger("mouseover");
+    cy.get(".leaflet-control-layers-overlays label input[checked]").click();
 
     cy.url().should("not.contain", "maps=");
   });
@@ -140,13 +118,10 @@ describe("Map", () => {
       cy.contains("Walker Reed")
         .should("have.attr", "href")
         .and("match", /https:\/\/github.com\/walkreed/);
-
-      //  User without a provided uri appears as plain text
-      cy.contains("Shy Guy").should("not.have.attr", "href");
     });
 
     it("The Maintainer Control disappears if all layers are unchecked", () => {
-      loadMap("/?maps=art-galleries");
+      loadMap("/?maps=adult-day-care");
       cy.get("[title='Maintainers']").should("exist");
 
       // Disable the art galleries layer

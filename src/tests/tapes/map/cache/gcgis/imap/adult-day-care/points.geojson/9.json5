@@ -1,0 +1,78 @@
+{
+    meta: {
+        createdAt: '2023-10-18T00:18:58.011Z',
+        host: 'https://data.openupstate.org',
+    },
+    req: {
+        headers: {
+            connection: 'keep-alive',
+            'proxy-connection': 'keep-alive',
+            'sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+            'sec-ch-ua-mobile': '?0',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'sec-ch-ua-platform': '"Linux"',
+            accept: '*/*',
+            origin: 'http://localhost:4173',
+            'sec-fetch-site': 'same-site',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            referer: 'http://localhost:4173/',
+            'accept-encoding': 'gzip',
+            'accept-language': 'en-US,en;q=0.9',
+        },
+        url: '/map/cache/gcgis/imap/adult-day-care/points.geojson',
+        method: 'GET',
+        body: '',
+    },
+    res: {
+        status: 200,
+        headers: {
+            date: [
+                'Wed, 18 Oct 2023 00:18:58 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'last-modified': [
+                'Sat, 22 Apr 2023 19:10:52 GMT',
+            ],
+            etag: [
+                '"7a1-5f9f1884cb8c3"',
+            ],
+            'accept-ranges': [
+                'bytes',
+            ],
+            'content-length': [
+                '1953',
+            ],
+            'cache-control': [
+                'max-age=1209600',
+            ],
+            expires: [
+                'Wed, 01 Nov 2023 00:18:58 GMT',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=100',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+        },
+        body: 'eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJjcnMiOnsidHlwZSI6Im5hbWUiLCJwcm9wZXJ0aWVzIjp7Im5hbWUiOiJFUFNHOjQzMjYifX0sImZlYXR1cmVzIjpbeyJ0eXBlIjoiRmVhdHVyZSIsImlkIjoxLCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Mi4yMjQxMzg5NjU1MjQ1ODgsMzQuOTI1MzEwNDA4MzQ5MTA1XX0sInByb3BlcnRpZXMiOnsiU0VSVklDRSI6IkFEVUxUIERBWSBDQVJFIiwiTkFNRSI6IkFDVElWRSBEQVkgT0YgR1JFRVIiLCJBRERSRVNTIjoiNzM2IFMgTElORSBTVFJFRVQgRVhUIiwiQ0lUWSI6IkdSRUVSIiwiU1RBVEUiOiJTQyIsIlpJUENPREUiOiIyOTY1MSIsIlBIT05FIjoiODY0LTg0OC0zMDAzIiwiV0VCIjoiaHR0cDovL3d3dy5zZW5pb3JjYXJlY3Rycy5jb20vIiwiSE9VUlMiOiJNT04gLSBGUkkgNzozMCBBTSAtIDQ6MDAgUE0iLCJPQkpFQ1RJRCI6MX19LHsidHlwZSI6IkZlYXR1cmUiLCJpZCI6MiwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvaW50IiwiY29vcmRpbmF0ZXMiOlstODIuNDI3OTg4NTE2MTYwNTUzLDM0Ljg2ODEzNTk2ODQ0MTIxNl19LCJwcm9wZXJ0aWVzIjp7IlNFUlZJQ0UiOiJBRFVMVCBEQVkgQ0FSRSIsIk5BTUUiOiJBQ1RJVkUgREFZIE9GIEdSRUVOVklMTEUiLCJBRERSRVNTIjoiMjEgTUNCRVRIIFNUIiwiQ0lUWSI6IkdSRUVOVklMTEUiLCJTVEFURSI6IlNDIiwiWklQQ09ERSI6IjI5NjExIiwiUEhPTkUiOiI4NjQtMjcxLTQyMTEiLCJXRUIiOiJodHRwOi8vd3d3LnNlbmlvcmNhcmVjdHJzLmNvbS8iLCJIT1VSUyI6Ik1PTiAtIEZSSSA3OjMwIEFNIC0gNTowMCBQTSIsIk9CSkVDVElEIjoyfX0seyJ0eXBlIjoiRmVhdHVyZSIsImlkIjozLCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9pbnQiLCJjb29yZGluYXRlcyI6Wy04Mi4yNTU0NDA3ODcyNzc1NSwzNC43MjQ2MzM1OTQxOTAwODhdfSwicHJvcGVydGllcyI6eyJTRVJWSUNFIjoiQURVTFQgREFZIENBUkUiLCJOQU1FIjoiQ0FQSVRBTCBIRUFMVEggU0VSVklDRSBBRFVMVCBEQVlDQVJFIiwiQUREUkVTUyI6IjUyNiBTIE1BSU4gU1QiLCJDSVRZIjoiU0lNUFNPTlZJTExFIiwiU1RBVEUiOiJTQyIsIlpJUENPREUiOiIyOTY4MSIsIlBIT05FIjoiODY0LTIyOC0zNjA0IiwiV0VCIjoiaHR0cHM6Ly93d3cuY2FwaXRhbGhlYWx0aHNlcnZpY2VsbGMuY29tLyIsIkhPVVJTIjoiTi9BIiwiT0JKRUNUSUQiOjN9fSx7InR5cGUiOiJGZWF0dXJlIiwiaWQiOjQsImdlb21ldHJ5Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbLTgyLjQxNjU2NDA3NjA2MjI1OCwzNC44MTIxNjI1NzI1OTgwMDVdfSwicHJvcGVydGllcyI6eyJTRVJWSUNFIjoiQURVTFQgREFZIENBUkUiLCJOQU1FIjoiR0hTIFNFTklPUiBDQVJFIiwiQUREUkVTUyI6IjMyIENFTlRFTk5JQUwgV0FZIiwiQ0lUWSI6IkdSRUVOVklMTEUiLCJTVEFURSI6IlNDIiwiWklQQ09ERSI6IjI5NjA1IiwiUEhPTkUiOiI4NjQtNTIyLTE5NTAiLCJXRUIiOiJodHRwczovL3d3dy5naHMub3JnLyIsIkhPVVJTIjoiTU9OIC0gRlJJIDg6MDAgQU0gLSA1OjAwIFBNIiwiT0JKRUNUSUQiOjR9fSx7InR5cGUiOiJGZWF0dXJlIiwiaWQiOjUsImdlb21ldHJ5Ijp7InR5cGUiOiJQb2ludCIsImNvb3JkaW5hdGVzIjpbLTgyLjQxMjUzMzMwOTMwNDEyMywzNC44MTI4OTkyNDk0OTk0NTldfSwicHJvcGVydGllcyI6eyJTRVJWSUNFIjoiQURVTFQgREFZIENBUkUiLCJOQU1FIjoiVEhFIEhBVkVOIElOIFRIRSBWSUxMQUdFIEFUIENIQU5USUNMRUVSIiwiQUREUkVTUyI6IjM1NSBCRVJLTUFOUyBMTiIsIkNJVFkiOiJHUkVFTlZJTExFIiwiU1RBVEUiOiJTQyIsIlpJUENPREUiOiIyOTYwNSIsIlBIT05FIjoiODY0LTQ2Ny0wMDMxIiwiV0VCIjoiaHR0cHM6Ly93d3cuZml2ZXN0YXJzZW5pb3JsaXZpbmcuY29tLyIsIkhPVVJTIjoiTi9BIiwiT0JKRUNUSUQiOjV9fV19',
+    },
+}

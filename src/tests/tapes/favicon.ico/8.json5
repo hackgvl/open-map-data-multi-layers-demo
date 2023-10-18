@@ -1,0 +1,96 @@
+{
+    meta: {
+        createdAt: '2023-10-18T00:57:45.710Z',
+        host: 'https://data.openupstate.org',
+        resHumanReadable: true,
+    },
+    req: {
+        headers: {
+            connection: 'keep-alive',
+            'proxy-connection': 'keep-alive',
+            'sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+            'sec-ch-ua-mobile': '?0',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'sec-ch-ua-platform': '"Linux"',
+            accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'no-cors',
+            'sec-fetch-dest': 'image',
+            referer: 'http://localhost:9090/map/cache/gcgis/imap/adult-day-care/points.geojson',
+            'accept-encoding': 'gzip',
+            'accept-language': 'en-US,en;q=0.9',
+        },
+        url: '/favicon.ico',
+        method: 'GET',
+        body: '',
+    },
+    res: {
+        status: 404,
+        headers: {
+            date: [
+                'Wed, 18 Oct 2023 00:57:46 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'cache-control': [
+                'max-age=86400, public',
+            ],
+            'x-ua-compatible': [
+                'IE=edge',
+            ],
+            'content-language': [
+                'en',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'x-frame-options': [
+                'SAMEORIGIN',
+            ],
+            expires: [
+                'Sun, 19 Nov 1978 05:00:00 GMT',
+            ],
+            vary: [
+                'Cookie',
+            ],
+            'x-generator': [
+                'Drupal 9 (https://www.drupal.org)',
+            ],
+            'x-drupal-cache': [
+                'MISS',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'last-modified': [
+                'Wed, 18 Oct 2023 00:57:45 GMT',
+            ],
+            etag: [
+                '"1697590665"',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=100',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+            'transfer-encoding': [
+                'chunked',
+            ],
+            'content-type': [
+                'text/html; charset=UTF-8',
+            ],
+        },
+        body: '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "https://data.openupstate.org/favicon.ico" was not found on this server.</p></body></html>',
+    },
+}
