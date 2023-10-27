@@ -229,7 +229,7 @@ onBeforeUnmount(() => mapStore.clearLayerData());
       ref="map"
       :zoom="mapStore.zoom"
       :minZoom="7"
-      :maxZoom="20"
+      :maxZoom="18"
       :center="mapStore.locationArray"
       :options="{
         attributionControl: false,
