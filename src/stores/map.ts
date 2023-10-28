@@ -7,7 +7,7 @@ import type {
   LayerData,
   MaintainerData,
 } from "../types";
-import type { LatLng } from "leaflet";
+import L, { type LatLng } from "leaflet";
 
 export const useMapStore = defineStore("map", {
   state: () => ({
@@ -100,6 +100,18 @@ export const useMapStore = defineStore("map", {
       }
 
       return this.availableMaps;
+    },
+    /*
+     * Resets the layer feature collection, while retaining options
+     * (for things like the styling of the marker and the pointToLayer
+     *  and onEachFeature callbacks) to prevent memory leaks from occurring.
+     */
+    async clearLayerData() {
+      for (const key in this.loadedMaps) {
+        this.loadedMaps[key].layer = new L.GeoJSON(undefined, {
+          ...this.loadedMaps[key].layer.options,
+        });
+      }
     },
   },
 });
