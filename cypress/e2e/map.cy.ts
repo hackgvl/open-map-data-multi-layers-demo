@@ -74,6 +74,35 @@ describe("Map", () => {
     cy.url().should("not.contain", "lng=-82.401078");
   });
 
+  it.only("Map contents are redisplayed whenever returning to the page from another", () => {
+    loadMap("/?maps=adult-day-care");
+
+    cy.get(".leaflet-marker-icon").its("length").as("initialNumberOfMarkers");
+
+    // Go to the About page...
+    cy.contains("About").click();
+    // ... and then back to the map page.
+    cy.get("nav > a:nth-child(1)").click();
+
+    // Check that the markers are all still there
+    cy.get("@initialNumberOfMarkers").then((initialCount) => {
+      cy.get(".leaflet-marker-icon")
+        .its("length")
+        .then((newCount) => {
+          expect(initialCount).to.eq(newCount);
+        });
+    });
+
+    cy.url().should("contain", "maps=adult-day-care");
+
+    // Check that the layer checkbox is still checked
+    cy.get("[title='Layers']").trigger("mouseover");
+    cy.get(".leaflet-control-layers-overlays label input[checked]").should(
+      "have.length",
+      1,
+    );
+  });
+
   describe("Attribution Control", () => {
     it("Attribution control displays the proper message", () => {
       loadMap("/");

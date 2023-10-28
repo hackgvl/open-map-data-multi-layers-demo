@@ -2,10 +2,11 @@
 import "leaflet/dist/leaflet.css";
 import L, { LatLng } from "leaflet";
 import type { Map, GeoJSON, LayersControlEvent } from "leaflet";
+import { createMarker, setTooltips } from "@/utils/map";
 </script>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import {
   LMap,
   LTileLayer,
@@ -48,6 +49,18 @@ async function initializeMap(map: Map) {
 
   for (const mapTitle in await mapStore.fetchAvailableMaps()) {
     const mapData = mapStore.availableMaps[mapTitle];
+    const layerData = mapStore.loadedMaps[mapData.mapSlug];
+
+    // If the layerData is already present, then it is leftover from a previous
+    // visit to this page.
+    if (layerData) {
+      addLayerToOverlay(
+        layersControl,
+        layerData.layer,
+        mapData.mapTitle,
+        mapData.color,
+      );
+    }
 
     await addMapLayer(
       map,
@@ -55,6 +68,7 @@ async function initializeMap(map: Map) {
       mapData,
       // Enable a map layer right away if it is listed in the query params
       mapsToEnable.has(mapData.mapSlug),
+      true,
     );
   }
 
@@ -69,15 +83,57 @@ async function initializeMap(map: Map) {
 
   map.on("overlayadd", async function (e: LayersControlEvent) {
     const mapName = e.name.toString().replace(/ \(.+\)$/, "");
-    addMapLayer(map, layersControl, mapStore.availableMaps[mapName], true);
+    addMapLayer(
+      map,
+      layersControl,
+      mapStore.availableMaps[mapName],
+      true,
+      false,
+    );
   });
 
   map.on("overlayremove", async function (e: LayersControlEvent) {
     const mapName = e.name.toString().replace(/ \(.+\)$/, "");
-    addMapLayer(map, layersControl, mapStore.availableMaps[mapName], false);
+    addMapLayer(
+      map,
+      layersControl,
+      mapStore.availableMaps[mapName],
+      false,
+      false,
+    );
   });
 
   mapInitialized.value = true;
+}
+
+async function addLayerToOverlay(
+  layersControl: L.Control.Layers,
+  layer: L.GeoJSON,
+  mapTitle: string,
+  color: string,
+) {
+  layersControl.addOverlay(layer, `${mapTitle} (${color})`);
+}
+
+/*
+ * Ensures layers are populated with GeoJSON data and added to the map
+ */
+function initializeLayerData(map: Map, mapData: MapData, layerData: LayerData) {
+  const featureCollection = mapStore.availableMaps[mapData.mapTitle]?.geoJson;
+
+  // If the data isn't already available then perform an external request to
+  // obtain it.
+  if (featureCollection) {
+    layerData.layer.addData(featureCollection);
+  } else {
+    mapStore.fetchGeoJson(mapData).then((response) => {
+      if (response) {
+        layerData.layer.addData(response);
+      }
+    });
+  }
+
+  layerData.layer.addTo(map);
 }
 
 /*
@@ -89,6 +145,7 @@ async function addMapLayer(
   control: L.Control.Layers,
   mapData: MapData,
   visible: boolean,
+  initializingMap: boolean,
 ) {
   // if layer is already fully loaded, just update the visibility in the store
   const layerData = mapStore.loadedMaps[mapData.mapSlug];
@@ -102,6 +159,15 @@ async function addMapLayer(
     layerData.visible = visible;
     mapStore.addMapLayer(mapData.mapSlug, layerData, maintainerData);
     setUrl();
+
+    // If the map is being reloaded, but the store hasn't been cleared
+    // (ex: user went to the About page and then came back)
+    // then we need to reinitialize the layer by adding back in the
+    // GeoJSON feature collection to it and then adding the layer to the map.
+    if (initializingMap) {
+      initializeLayerData(map, mapData, layerData);
+    }
+
     return;
   }
 
@@ -117,58 +183,10 @@ async function addMapLayer(
           color: mapData.color,
         };
       },
-      pointToLayer: function (_feature: Feature, latlng: LatLng) {
-        const markerHtmlStyles = `
-          background-color: ${mapData.color};
-          width: 2rem;
-          height: 2rem;
-          display: block;
-          left: -1rem;
-          top: -1rem;
-          position: relative;
-          border-radius: 2rem 2rem 0;
-          transform: rotate(45deg);
-          border: 1px solid #FFFFFFAA`;
-
-        const markerIcon = L.divIcon({
-          className: "",
-          iconAnchor: [0, 24],
-          popupAnchor: [0, -36],
-          html: `<span style="${markerHtmlStyles}" />`,
-        });
-
-        return L.marker(latlng, { icon: markerIcon });
-      },
-      onEachFeature: function (feature: Feature, layer: GeoJSON) {
-        if (feature && feature.properties) {
-          const properties = feature.properties;
-
-          const tooltipString =
-            `<div>Map: ${mapData.mapTitle}</div>` +
-            Object.keys(properties)
-              .filter((key) => key != "OBJECTID" && properties[key])
-              .map((key) => {
-                const propertyName = toTitleCase(key.toString()).replace(
-                  /_/g,
-                  " ",
-                );
-                let propertyValue;
-                if (
-                  properties[key]?.toString().startsWith("http") ||
-                  properties[key]?.toString().startsWith("tel")
-                ) {
-                  propertyValue = `<a href="${properties[key]}" target="_blank" rel="noreferrer">${properties[key]}</a>`;
-                } else {
-                  propertyValue = properties[key];
-                }
-
-                return `<div>${propertyName}: ${propertyValue}</div>`;
-              })
-              .join("");
-
-          layer.bindPopup(tooltipString, {});
-        }
-      },
+      pointToLayer: (_feature: Feature, latlng: LatLng) =>
+        createMarker(mapData.color, latlng),
+      onEachFeature: (feature: Feature, layer: GeoJSON) =>
+        setTooltips(mapData.mapTitle, feature, layer),
     };
 
     layer = L.geoJSON([], options);
@@ -179,12 +197,7 @@ async function addMapLayer(
   mapStore.addMapLayer(mapData.mapSlug, newLayerData, maintainerData);
 
   if (visible) {
-    mapStore.fetchGeoJson(mapData).then((response) => {
-      if (response) {
-        layer.addData(response);
-      }
-    });
-    layer.addTo(map);
+    initializeLayerData(map, mapData, newLayerData);
   }
 
   setUrl();
@@ -207,11 +220,7 @@ function setUrl() {
   });
 }
 
-function toTitleCase(string: string) {
-  return string.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-}
+onBeforeUnmount(() => mapStore.clearLayerData());
 </script>
 
 <template>
@@ -229,7 +238,7 @@ function toTitleCase(string: string) {
     >
       <l-control-attribution
         position="bottomright"
-        prefix="Brought to you by <a href='https://hackgreenville.com/' target='_blank'>HackGreenville Labs</a>."
+        prefix="Brought to you by <a href='https://hackgreenville.com/' target='_blank'>HackGreenville Labs</a>"
       />
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
