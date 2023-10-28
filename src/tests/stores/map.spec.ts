@@ -146,4 +146,59 @@ describe("mapStore", () => {
     mapStore.removeMapLayer(fakeMapSlug);
     expect(mapStore.loadedMaps).toStrictEqual({});
   });
+
+  describe("clearLayerData", () => {
+    it("clears feature collection and retains options from previous copy of layer", async () => {
+      const featureCollection: GeoJSON.FeatureCollection<any> = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [0, 0],
+            },
+            properties: {},
+          },
+        ],
+      };
+
+      const mapStore = useMapStore();
+      const layerData: LayerData = {
+        layer: L.geoJSON(featureCollection, {
+          style: () => ({
+            fillColor: "test",
+            color: "test",
+          }),
+        }),
+        loaded: false,
+        visible: false,
+      };
+
+      mapStore.addMapLayer(fakeMapSlug, layerData, sampleMaintainerData);
+
+      const beforeKeyCount = Object.keys(
+        mapStore.loadedMaps[fakeMapSlug].layer,
+      ).length;
+
+      await mapStore.clearLayerData();
+
+      const afterKeyCount = Object.keys(
+        mapStore.loadedMaps[fakeMapSlug].layer,
+      ).length;
+
+      expect(beforeKeyCount).toBeGreaterThan(afterKeyCount);
+
+      expect(typeof layerData.layer.options.style).toEqual("function");
+
+      if (typeof layerData.layer.options.style == "function") {
+        expect(JSON.stringify(layerData.layer.options.style())).toEqual(
+          JSON.stringify({
+            fillColor: "test",
+            color: "test",
+          }),
+        );
+      }
+    });
+  });
 });
