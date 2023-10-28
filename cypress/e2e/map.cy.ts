@@ -74,7 +74,7 @@ describe("Map", () => {
     cy.url().should("not.contain", "lng=-82.401078");
   });
 
-  it.only("Map contents are redisplayed whenever returning to the page from another", () => {
+  it("Map contents are redisplayed whenever returning to the page from another", () => {
     loadMap("/?maps=adult-day-care");
 
     cy.get(".leaflet-marker-icon").its("length").as("initialNumberOfMarkers");
@@ -108,7 +108,7 @@ describe("Map", () => {
       loadMap("/");
 
       cy.get(".leaflet-control-attribution").contains(
-        "Brought to you by HackGreenville Labs.",
+        "Brought to you by HackGreenville Labs",
       );
     });
   });
