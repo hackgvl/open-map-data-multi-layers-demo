@@ -42,6 +42,14 @@ describe("Map", () => {
     cy.url().should("contain", "zoom=11");
   });
 
+  it("zooms the map in with scroll wheel and attempts to surpass the max zoom", () => {
+    loadMap("/?zoom=18");
+
+    cy.get(".leaflet-container").scrollLeaflet({ deltaY: -66.666666 });
+
+    cy.url().should("contain", "zoom=18");
+  });
+
   it("unzooms the map with zoom out button and changes URL", () => {
     loadMap("/?zoom=10");
 
