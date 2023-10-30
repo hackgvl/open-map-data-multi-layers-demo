@@ -1,17 +1,25 @@
 {
     meta: {
-        createdAt: '2023-10-07T22:22:03.363Z',
+        createdAt: '2023-10-30T03:59:22.361Z',
         host: 'https://data.openupstate.org',
         resHumanReadable: true,
     },
     req: {
         headers: {
             connection: 'keep-alive',
+            'proxy-connection': 'keep-alive',
+            'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114"',
+            'sec-ch-ua-mobile': '?0',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.3.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36',
+            'sec-ch-ua-platform': '"Linux"',
             accept: '*/*',
-            'accept-language': '*',
+            origin: 'http://localhost:4173',
+            'sec-fetch-site': 'same-site',
             'sec-fetch-mode': 'cors',
-            'user-agent': 'undici',
-            'accept-encoding': 'gzip, deflate',
+            'sec-fetch-dest': 'empty',
+            referer: 'http://localhost:4173/',
+            'accept-encoding': 'gzip',
+            'accept-language': 'en-US',
         },
         url: '/rest/maps?_format=json',
         method: 'GET',
@@ -21,7 +29,7 @@
         status: 200,
         headers: {
             date: [
-                'Sun, 24 Sep 2023 13:46:37 GMT',
+                'Sat, 28 Oct 2023 02:10:53 GMT',
             ],
             server: [
                 'Apache',
@@ -60,10 +68,10 @@
                 'max-age=31536000;',
             ],
             'last-modified': [
-                'Sun, 24 Sep 2023 13:46:37 GMT',
+                'Sat, 28 Oct 2023 02:10:52 GMT',
             ],
             etag: [
-                '"1695563197"',
+                '"1698459052"',
             ],
             'access-control-allow-origin': [
                 '*',
