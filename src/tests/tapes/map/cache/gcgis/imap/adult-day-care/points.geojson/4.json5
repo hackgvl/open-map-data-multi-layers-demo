@@ -1,15 +1,15 @@
 {
     meta: {
-        createdAt: '2023-10-18T00:18:58.011Z',
+        createdAt: '2023-10-30T03:59:27.485Z',
         host: 'https://data.openupstate.org',
     },
     req: {
         headers: {
             connection: 'keep-alive',
             'proxy-connection': 'keep-alive',
-            'sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+            'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114"',
             'sec-ch-ua-mobile': '?0',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.3.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36',
             'sec-ch-ua-platform': '"Linux"',
             accept: '*/*',
             origin: 'http://localhost:4173',
@@ -18,7 +18,7 @@
             'sec-fetch-dest': 'empty',
             referer: 'http://localhost:4173/',
             'accept-encoding': 'gzip',
-            'accept-language': 'en-US,en;q=0.9',
+            'accept-language': 'en-US',
         },
         url: '/map/cache/gcgis/imap/adult-day-care/points.geojson',
         method: 'GET',
@@ -28,7 +28,7 @@
         status: 200,
         headers: {
             date: [
-                'Wed, 18 Oct 2023 00:18:58 GMT',
+                'Mon, 30 Oct 2023 03:59:27 GMT',
             ],
             server: [
                 'Apache',
@@ -55,7 +55,7 @@
                 'max-age=1209600',
             ],
             expires: [
-                'Wed, 01 Nov 2023 00:18:58 GMT',
+                'Mon, 13 Nov 2023 03:59:27 GMT',
             ],
             'access-control-allow-origin': [
                 '*',
@@ -67,7 +67,7 @@
                 'GET',
             ],
             'keep-alive': [
-                'timeout=5, max=100',
+                'timeout=5, max=98',
             ],
             connection: [
                 'Keep-Alive',
