@@ -11,3 +11,7 @@
 .h-full-screen {
   @apply fixed h-full overscroll-none;
 }
+
+.leaflet-control-attribution > a {
+  @apply underline;
+}

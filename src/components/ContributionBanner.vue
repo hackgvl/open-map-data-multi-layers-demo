@@ -5,7 +5,10 @@ const uiStore = useUIStore();
 </script>
 
 <template>
-  <div class="sticky top-0 overflow-hidden gap-x-6 bg-gray-800 items-center">
+  <div
+    class="sticky top-0 overflow-hidden gap-x-6 bg-gray-800 items-center"
+    role="region"
+  >
     <div class="flex flex-nowrap">
       <!-- Spacer -->
       <div class="flex flex-1 shrink" aria-hidden="true" />

@@ -111,6 +111,14 @@ describe("Map", () => {
     );
   });
 
+  it("is accessible", () => {
+    cy.visit("/");
+
+    cy.injectAxe();
+
+    cy.checkA11y();
+  });
+
   describe("Attribution Control", () => {
     it("Attribution control displays the proper message", () => {
       loadMap("/");
@@ -167,6 +175,15 @@ describe("Map", () => {
 
       // Maintainer control should not be visible any longer
       cy.get("[title='Maintainers']").should("not.exist");
+    });
+
+    it("contents of control pop-up are accessible", () => {
+      cy.visit("/");
+      cy.get("[title='Layers']").trigger("mouseover");
+
+      cy.injectAxe();
+
+      cy.checkA11y();
     });
   });
 });
