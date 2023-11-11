@@ -37,6 +37,7 @@ function mapLink() {
     </Transition>
     <div
       :class="uiStore.showContributionBanner ? 'h-[calc(100%-24px)]' : 'h-full'"
+      role="main"
     >
       <RouterView />
     </div>
@@ -47,6 +48,7 @@ function mapLink() {
   >
     <nav
       class="flex justify-between items-center text-xl space-x-4 mx-4 md:mx-8 lg:mx-16"
+      role="navigation"
     >
       <RouterLink class="link" :to="mapLink()">Map</RouterLink>
       <ContributionButton />

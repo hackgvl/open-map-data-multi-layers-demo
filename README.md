@@ -1,7 +1,7 @@
 # Open Data Upstate / Greenville SC Map Layers Demo
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[all-contributors-logo]: https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square "Number of contributors on All-Contributors"
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![All Contributors][all-contributors-logo]](#contributors-)&ensp;[![Continuous Integration](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/hackgvl/open-map-data-multi-layers-demo/actions/workflows/ci.yml)
@@ -130,6 +130,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://olivia.sculley.dev"><img src="https://avatars.githubusercontent.com/u/88074048?v=4?s=100" width="100px;" alt="Olivia Sculley"/><br /><sub><b>Olivia Sculley</b></sub></a><br /><a href="#ideas-oliviasculley" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=oliviasculley" title="Code">💻</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=oliviasculley" title="Tests">⚠️</a> <a href="#maintenance-oliviasculley" title="Maintenance">🚧</a> <a href="#infra-oliviasculley" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/issues?q=author%3Aoliviasculley" title="Bug reports">🐛</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=oliviasculley" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ThorntonMatthewD"><img src="https://avatars.githubusercontent.com/u/44626690?v=4?s=100" width="100px;" alt="Matthew Thornton"/><br /><sub><b>Matthew Thornton</b></sub></a><br /><a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=ThorntonMatthewD" title="Code">💻</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=ThorntonMatthewD" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Alex-Grimes"><img src="https://avatars.githubusercontent.com/u/66704965?v=4?s=100" width="100px;" alt="Alex Grimes"/><br /><sub><b>Alex Grimes</b></sub></a><br /><a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=Alex-Grimes" title="Code">💻</a> <a href="https://github.com/hackgvl/open-map-data-multi-layers-demo/commits?author=Alex-Grimes" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>

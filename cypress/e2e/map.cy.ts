@@ -42,6 +42,14 @@ describe("Map", () => {
     cy.url().should("contain", "zoom=11");
   });
 
+  it("zooms the map in with scroll wheel and attempts to surpass the max zoom", () => {
+    loadMap("/?zoom=18");
+
+    cy.get(".leaflet-container").scrollLeaflet({ deltaY: -66.666666 });
+
+    cy.url().should("contain", "zoom=18");
+  });
+
   it("unzooms the map with zoom out button and changes URL", () => {
     loadMap("/?zoom=10");
 
@@ -74,12 +82,49 @@ describe("Map", () => {
     cy.url().should("not.contain", "lng=-82.401078");
   });
 
+  it("Map contents are redisplayed whenever returning to the page from another", () => {
+    loadMap("/?maps=adult-day-care");
+
+    cy.get(".leaflet-marker-icon").its("length").as("initialNumberOfMarkers");
+
+    // Go to the About page...
+    cy.contains("About").click();
+    // ... and then back to the map page.
+    cy.get("nav > a:nth-child(1)").click();
+
+    // Check that the markers are all still there
+    cy.get("@initialNumberOfMarkers").then((initialCount) => {
+      cy.get(".leaflet-marker-icon")
+        .its("length")
+        .then((newCount) => {
+          expect(initialCount).to.eq(newCount);
+        });
+    });
+
+    cy.url().should("contain", "maps=adult-day-care");
+
+    // Check that the layer checkbox is still checked
+    cy.get("[title='Layers']").trigger("mouseover");
+    cy.get(".leaflet-control-layers-overlays label input[checked]").should(
+      "have.length",
+      1,
+    );
+  });
+
+  it("is accessible", () => {
+    cy.visit("/");
+
+    cy.injectAxe();
+
+    cy.checkA11y();
+  });
+
   describe("Attribution Control", () => {
     it("Attribution control displays the proper message", () => {
       loadMap("/");
 
       cy.get(".leaflet-control-attribution").contains(
-        "Brought to you by HackGreenville Labs.",
+        "Brought to you by HackGreenville Labs",
       );
     });
   });
@@ -130,6 +175,15 @@ describe("Map", () => {
 
       // Maintainer control should not be visible any longer
       cy.get("[title='Maintainers']").should("not.exist");
+    });
+
+    it("contents of control pop-up are accessible", () => {
+      cy.visit("/");
+      cy.get("[title='Layers']").trigger("mouseover");
+
+      cy.injectAxe();
+
+      cy.checkA11y();
     });
   });
 });

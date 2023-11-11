@@ -26,6 +26,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/44626690?v=4",
       "profile": "https://github.com/ThorntonMatthewD",
       "contributions": ["code", "test"]
+    },
+    {
+      "login": "Alex-Grimes",
+      "name": "Alex Grimes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66704965?v=4",
+      "profile": "https://github.com/Alex-Grimes",
+      "contributions": ["code", "test"]
     }
   ],
   "contributorsPerLine": 7,

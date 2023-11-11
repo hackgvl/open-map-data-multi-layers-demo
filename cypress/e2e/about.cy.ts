@@ -12,4 +12,12 @@ describe("About page", () => {
 
     cy.contains("Upstate / Greenville SC Open Data Map Layers Demo");
   });
+
+  it("is accessible", () => {
+    cy.visit("/about");
+
+    cy.injectAxe();
+
+    cy.checkA11y();
+  });
 });
