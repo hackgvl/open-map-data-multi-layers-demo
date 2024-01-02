@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -25,14 +27,22 @@
       "name": "Matthew Thornton",
       "avatar_url": "https://avatars.githubusercontent.com/u/44626690?v=4",
       "profile": "https://github.com/ThorntonMatthewD",
-      "contributions": ["code", "test"]
+      "contributions": [
+        "code",
+        "test"
+      ]
     },
     {
       "login": "Alex-Grimes",
       "name": "Alex Grimes",
       "avatar_url": "https://avatars.githubusercontent.com/u/66704965?v=4",
       "profile": "https://github.com/Alex-Grimes",
-      "contributions": ["code", "test"]
+      "contributions": [
+        "code",
+        "test",
+        "design",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
