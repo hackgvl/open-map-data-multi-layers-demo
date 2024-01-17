@@ -2,8 +2,8 @@
   "name": "open_data_gvl_map",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 4173",
-    "dev:host": "vite --port 4173 --host",
+    "dev": "vite",
+    "dev:host": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/ --watch=false",
