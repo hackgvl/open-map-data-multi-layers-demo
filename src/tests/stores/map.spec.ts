@@ -149,19 +149,20 @@ describe("mapStore", () => {
 
   describe("clearLayerData", () => {
     it("clears feature collection and retains options from previous copy of layer", async () => {
-      const featureCollection: GeoJSON.FeatureCollection<any> = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [0, 0],
+      const featureCollection: GeoJSON.FeatureCollection<GeoJSON.Geometry | null> =
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates: [0, 0],
+              },
+              properties: {},
             },
-            properties: {},
-          },
-        ],
-      };
+          ],
+        };
 
       const mapStore = useMapStore();
       const layerData: LayerData = {

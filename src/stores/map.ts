@@ -4,6 +4,7 @@ import type {
   MapSlug,
   MapTitle,
   MapData,
+  MapJson,
   LayerData,
   MaintainerData,
 } from "../types";
@@ -34,9 +35,9 @@ export const useMapStore = defineStore("map", {
       layerData: LayerData,
       maintainers: MaintainerData,
     ) {
-      layerData.visible
-        ? (this.maintainersOfActiveLayers[mapSlug] = maintainers)
-        : delete this.maintainersOfActiveLayers[mapSlug];
+      if (layerData.visible)
+        this.maintainersOfActiveLayers[mapSlug] = maintainers;
+      else delete this.maintainersOfActiveLayers[mapSlug];
 
       this.loadedMaps[mapSlug] = layerData;
     },
@@ -69,12 +70,12 @@ export const useMapStore = defineStore("map", {
           .then((data) => {
             data
               .filter(
-                (mapData: any) =>
+                (mapData: MapJson) =>
                   mapData?.field_slug?.[0]?.value &&
                   mapData?.field_geojson_link?.[0]?.uri &&
                   mapData?.title?.[0]?.value,
               )
-              .map(async (mapDataJson: any) => {
+              .map(async (mapDataJson: MapJson) => {
                 const geoJsonUrl = new URL(
                   mapDataJson.field_geojson_link[0].uri
                     .toString()
@@ -118,7 +119,7 @@ export const useMapStore = defineStore("map", {
 
 // Uses the title for a hash, so it'll return the same color for the same title
 // every time
-function getRandomColor(title: String) {
+function getRandomColor(title: string) {
   const colors = [
     "aqua",
     "black",
@@ -140,7 +141,7 @@ function getRandomColor(title: String) {
   ];
 }
 
-function simpleHash(s: String) {
+function simpleHash(s: string) {
   let h = 0;
   for (let i = 0; i < s.length; h &= h) h = 31 * h + s.charCodeAt(i++);
   return h;
