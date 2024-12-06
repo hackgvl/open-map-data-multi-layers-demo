@@ -1,12 +1,13 @@
 {
     meta: {
-        createdAt: '2023-10-30T03:59:14.845Z',
+        createdAt: '2024-12-06T02:30:15.481Z',
         host: 'https://data.openupstate.org',
     },
     req: {
         headers: {
             accept: 'text/html, application/json, text/plain, */*',
-            'user-agent': 'axios/0.27.2',
+            'user-agent': 'axios/1.7.9',
+            'accept-encoding': 'gzip, compress, deflate, br',
             connection: 'keep-alive',
         },
         url: '/',
@@ -17,7 +18,7 @@
         status: 200,
         headers: {
             date: [
-                'Thu, 07 Sep 2023 05:47:18 GMT',
+                'Sat, 07 Sep 2024 17:03:55 GMT',
             ],
             server: [
                 'Apache',
@@ -56,10 +57,10 @@
                 'max-age=31536000;',
             ],
             'last-modified': [
-                'Thu, 07 Sep 2023 05:47:17 GMT',
+                'Sat, 07 Sep 2024 17:03:55 GMT',
             ],
             etag: [
-                '"1694065637"',
+                '"1725728635"',
             ],
             'access-control-allow-origin': [
                 '*',

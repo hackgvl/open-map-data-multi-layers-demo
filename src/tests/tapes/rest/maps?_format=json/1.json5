@@ -1,25 +1,17 @@
 {
     meta: {
-        createdAt: '2023-10-30T03:59:22.361Z',
+        createdAt: '2024-12-06T01:08:03.468Z',
         host: 'https://data.openupstate.org',
         resHumanReadable: true,
     },
     req: {
         headers: {
             connection: 'keep-alive',
-            'proxy-connection': 'keep-alive',
-            'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114"',
-            'sec-ch-ua-mobile': '?0',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.3.1 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36',
-            'sec-ch-ua-platform': '"Linux"',
             accept: '*/*',
-            origin: 'http://localhost:4173',
-            'sec-fetch-site': 'same-site',
+            'accept-language': '*',
             'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
-            referer: 'http://localhost:4173/',
-            'accept-encoding': 'gzip',
-            'accept-language': 'en-US',
+            'user-agent': 'node',
+            'accept-encoding': 'gzip, deflate',
         },
         url: '/rest/maps?_format=json',
         method: 'GET',
@@ -29,7 +21,7 @@
         status: 200,
         headers: {
             date: [
-                'Sat, 28 Oct 2023 02:10:53 GMT',
+                'Tue, 01 Oct 2024 17:36:37 GMT',
             ],
             server: [
                 'Apache',
@@ -68,10 +60,10 @@
                 'max-age=31536000;',
             ],
             'last-modified': [
-                'Sat, 28 Oct 2023 02:10:52 GMT',
+                'Tue, 01 Oct 2024 17:36:37 GMT',
             ],
             etag: [
-                '"1698459052"',
+                '"1727804197"',
             ],
             'access-control-allow-origin': [
                 '*',
@@ -1204,7 +1196,7 @@
                 ],
                 changed: [
                     {
-                        value: '2023-01-01T01:56:05+00:00',
+                        value: '2024-09-07T17:10:25+00:00',
                         format: 'Y-m-d\\TH:i:sP',
                     },
                 ],
@@ -1238,7 +1230,7 @@
                 path: [
                     {
                         alias: '/map/co-working-spaces',
-                        pid: 278,
+                        pid: 587,
                         langcode: 'en',
                     },
                 ],
@@ -1255,14 +1247,14 @@
                 ],
                 field_contribute_link: [
                     {
-                        uri: 'https://docs.google.com/spreadsheets/d/1DaFbYMFFjldWLinzJJDr1URwF-5bP-JGJVPxpn_pRZo/edit#gid=0',
+                        uri: 'https://docs.google.com/spreadsheets/d/1SfQFG4iSbD8vlKzUfpgCEJmNQcUBnhgZZzlameKT4l8/edit?gid=0#gid=0',
                         title: '',
                         options: [],
                     },
                 ],
                 field_geojson_link: [
                     {
-                        uri: 'internal:/map/geojson/coworking-spaces/',
+                        uri: 'https://joinopenworks.com/maps/coworking-spaces/points.geojson',
                         title: '',
                         options: [],
                     },
@@ -1281,7 +1273,7 @@
                 ],
                 field_map_preview_link: [
                     {
-                        uri: 'internal:/map/preview/coworking-spaces',
+                        uri: 'https://joinopenworks.com/map-of-coworking-spaces-near-greenville-sc',
                         title: '',
                         options: [],
                     },
@@ -1294,7 +1286,7 @@
                 ],
                 field_raw_data_link: [
                     {
-                        uri: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQoc3Mwbltb3EqVRiY8LVEOlZt4826EeeUd97UVy4zZbdOB_uWLlobeY4W96ffYcxwysTUCAv6-jwqA/pub?gid=0&single=true&output=csv',
+                        uri: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRtM2qaSOwlUKWRHLHpXAxk90W19jExJxILqF_3tq_mForyK6ne3V2GKrk-NPqedPuIuIUlqkt7DAjE/pub?gid=0&single=true&output=csv',
                         title: '',
                         options: [],
                     },
@@ -1559,7 +1551,7 @@
                 ],
                 changed: [
                     {
-                        value: '2023-04-19T20:23:05+00:00',
+                        value: '2024-10-01T17:35:22+00:00',
                         format: 'Y-m-d\\TH:i:sP',
                     },
                 ],
@@ -1610,14 +1602,14 @@
                 ],
                 field_contribute_link: [
                     {
-                        uri: 'https://docs.google.com/spreadsheets/d/1t9Repy2rFBKdXIRVgt-6JtPZeo8TO8TrsAK7qSV9MvU/edit#gid=0',
+                        uri: 'https://docs.google.com/spreadsheets/d/1sEAf3l_tBUAA0HbBVYoBbaKaTzYOA3YqfKtMP2P1fEA/edit?gid=0#gid=0',
                         title: '',
                         options: [],
                     },
                 ],
                 field_geojson_link: [
                     {
-                        uri: 'internal:/map/geojson/breweries/',
+                        uri: 'https://joinopenworks.com/maps/breweries/points.geojson',
                         title: '',
                         options: [],
                     },
@@ -1651,7 +1643,7 @@
                 ],
                 field_map_preview_link: [
                     {
-                        uri: 'internal:/map/preview/breweries',
+                        uri: 'https://joinopenworks.com/map-of-breweries-near-greenville-sc',
                         title: '',
                         options: [],
                     },
@@ -1667,7 +1659,7 @@
                 ],
                 field_raw_data_link: [
                     {
-                        uri: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vST-ldMZkKY6xaeRj8XfLrUUy0qNyMPI6aGvsgToEPJMsusmT8o_7pNg9WctnIENvdXUrFBTiPRVdJP/pub?gid=0&single=true&output=csv',
+                        uri: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRfRAqGYkltNKQDgeuFQ4Er5GXemXMhlPSquYVI8QvR0VYk6LNLoutVk3NtaUs09O0e_6aYBuPYvl4/pub?gid=0&single=true&output=csv',
                         title: '',
                         options: [],
                     },
@@ -5906,15 +5898,15 @@
                 ],
                 uid: [
                     {
-                        target_id: 649,
+                        target_id: 1,
                         target_type: 'user',
-                        target_uuid: 'a9cd1191-97fe-4eba-82ea-a25d4653efeb',
-                        url: '/yall/649',
+                        target_uuid: 'cccc9686-695d-412c-8b00-c7e3b4f0f828',
+                        url: '/yall/1',
                     },
                 ],
                 title: [
                     {
-                        value: 'Swamp Rabbit Trail - Path',
+                        value: 'Swamp Rabbit Trail - Main Path',
                     },
                 ],
                 created: [
@@ -5925,7 +5917,7 @@
                 ],
                 changed: [
                     {
-                        value: '2023-07-09T05:18:09+00:00',
+                        value: '2024-01-13T21:52:00+00:00',
                         format: 'Y-m-d\\TH:i:sP',
                     },
                 ],
@@ -5951,8 +5943,8 @@
                 ],
                 metatag: {
                     value: {
-                        title: 'Swamp Rabbit Trail - Path | Open Data in Greenville SC',
-                        description: 'A real-time, community-curated map layer of Swamp Rabbit Trail - Path.',
+                        title: 'Swamp Rabbit Trail - Main Path | Open Data in Greenville SC',
+                        description: 'A real-time, community-curated map layer of Swamp Rabbit Trail - Main Path.',
                         referrer: 'no-referrer',
                     },
                 },
@@ -5963,7 +5955,14 @@
                         langcode: 'en',
                     },
                 ],
-                body: [],
+                body: [
+                    {
+                        value: '<p>This layer only shows the main line of the Swamp Rabbit Trail. The <a href="/map/swamp-rabbit-trail-connectors-and-spurs">trail\'s connectors and spurs data is in a separate map layer</a>.</p>',
+                        format: 'basic_html',
+                        processed: '<p>This layer only shows the main line of the Swamp Rabbit Trail. The <a href="/map/swamp-rabbit-trail-connectors-and-spurs">trail\'s connectors and spurs data is in a separate map layer</a>.</p>',
+                        summary: '',
+                    },
+                ],
                 field_center_point_latitude: [
                     {
                         value: 34.8507,
@@ -5984,7 +5983,7 @@
                 ],
                 field_maintainers: [
                     {
-                        uri: 'http://greenvilleopenmap.info',
+                        uri: 'https://greenvilleopenmap.info',
                         title: 'Mike Nice',
                         options: [],
                     },
@@ -6009,7 +6008,7 @@
                 ],
                 field_raw_data_link: [
                     {
-                        uri: 'internal:/map/geojson/swamp-rabbit-trail-path/trail.geojson',
+                        uri: 'https://greenvilleopenmap.info/SwampRabbitWays.geojson',
                         title: '',
                         options: [],
                     },
@@ -13468,6 +13467,184 @@
                 field_zoom_level: [
                     {
                         value: 10,
+                    },
+                ],
+            },
+            {
+                nid: [
+                    {
+                        value: 172,
+                    },
+                ],
+                uuid: [
+                    {
+                        value: '2b962121-89f6-4197-bef1-14e2f88bae53',
+                    },
+                ],
+                vid: [
+                    {
+                        value: 175,
+                    },
+                ],
+                langcode: [
+                    {
+                        value: 'en',
+                    },
+                ],
+                type: [
+                    {
+                        target_id: 'map',
+                        target_type: 'node_type',
+                        target_uuid: '53978e5d-803a-4277-a1cc-9777b157c2a2',
+                    },
+                ],
+                revision_timestamp: [
+                    {
+                        value: '2024-01-13T21:33:46+00:00',
+                        format: 'Y-m-d\\TH:i:sP',
+                    },
+                ],
+                revision_uid: [
+                    {
+                        target_id: 1,
+                        target_type: 'user',
+                        target_uuid: 'cccc9686-695d-412c-8b00-c7e3b4f0f828',
+                        url: '/yall/1',
+                    },
+                ],
+                revision_log: [],
+                status: [
+                    {
+                        value: true,
+                    },
+                ],
+                uid: [
+                    {
+                        target_id: 1,
+                        target_type: 'user',
+                        target_uuid: 'cccc9686-695d-412c-8b00-c7e3b4f0f828',
+                        url: '/yall/1',
+                    },
+                ],
+                title: [
+                    {
+                        value: 'Swamp Rabbit Trail - Connectors & Spurs',
+                    },
+                ],
+                created: [
+                    {
+                        value: '2024-01-13T21:32:42+00:00',
+                        format: 'Y-m-d\\TH:i:sP',
+                    },
+                ],
+                changed: [
+                    {
+                        value: '2024-01-13T21:51:17+00:00',
+                        format: 'Y-m-d\\TH:i:sP',
+                    },
+                ],
+                promote: [
+                    {
+                        value: false,
+                    },
+                ],
+                sticky: [
+                    {
+                        value: false,
+                    },
+                ],
+                default_langcode: [
+                    {
+                        value: true,
+                    },
+                ],
+                revision_translation_affected: [
+                    {
+                        value: true,
+                    },
+                ],
+                metatag: {
+                    value: {
+                        title: 'Swamp Rabbit Trail - Connectors & Spurs | Open Data in Greenville SC',
+                        description: "A syndicated map layer of the Swamp Rabbit Trail's connectors and spurs, based on the community-curated map layer from OpenStreetMap.",
+                        referrer: 'no-referrer',
+                    },
+                },
+                path: [
+                    {
+                        alias: '/map/swamp-rabbit-trail-connectors-and-spurs',
+                        pid: 480,
+                        langcode: 'en',
+                    },
+                ],
+                body: [
+                    {
+                        value: '<p>This layer only includes the smaller connector and spur trails that lead into the Swamp Rabbit Trail. The <a href="/map/swamp-rabbit-trail-path">trail\'s main path data is in a separate map layer</a>.</p>',
+                        format: 'basic_html',
+                        processed: '<p>This layer only includes the smaller connector and spur trails that lead into the Swamp Rabbit Trail. The <a href="/map/swamp-rabbit-trail-path">trail\'s main path data is in a separate map layer</a>.</p>',
+                        summary: '',
+                    },
+                ],
+                field_center_point_latitude: [
+                    {
+                        value: 34.8507,
+                    },
+                ],
+                field_center_point_longitude: [
+                    {
+                        value: -82.3985,
+                    },
+                ],
+                field_contribute_link: [],
+                field_geojson_link: [
+                    {
+                        uri: 'internal:/map/geojson/swamp-rabbit-trail-path/connectors.geojson',
+                        title: '',
+                        options: [],
+                    },
+                ],
+                field_maintainers: [
+                    {
+                        uri: 'https://greenvilleopenmap.info',
+                        title: 'Mike Nice',
+                        options: [],
+                    },
+                    {
+                        uri: 'https://www.openstreetmap.org',
+                        title: 'OpenStreetMap Contributors',
+                        options: [],
+                    },
+                ],
+                field_map_preview_link: [
+                    {
+                        uri: 'internal:/map/preview/swamp-rabbit-trail-connectors-and-spurs',
+                        title: '',
+                        options: [],
+                    },
+                ],
+                field_map_tags: [],
+                field_meta_tags: [
+                    {
+                        value: {
+                            description: "A syndicated map layer of the Swamp Rabbit Trail's connectors and spurs, based on the community-curated map layer from OpenStreetMap.",
+                        },
+                    },
+                ],
+                field_raw_data_link: [
+                    {
+                        uri: 'https://greenvilleopenmap.info/SwampRabbitConnectors.geojson',
+                        title: '',
+                        options: [],
+                    },
+                ],
+                field_slug: [
+                    {
+                        value: 'swamp-rabbit-trail-connectors-and-spurs',
+                    },
+                ],
+                field_zoom_level: [
+                    {
+                        value: 12,
                     },
                 ],
             },
