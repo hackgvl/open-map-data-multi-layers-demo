@@ -1,0 +1,86 @@
+{
+    meta: {
+        createdAt: '2024-12-06T01:17:32.414Z',
+        host: 'https://data.openupstate.org',
+    },
+    req: {
+        headers: {
+            accept: 'text/html, application/json, text/plain, */*',
+            'user-agent': 'axios/1.6.5',
+            'accept-encoding': 'gzip, compress, deflate, br',
+            connection: 'keep-alive',
+        },
+        url: '/',
+        method: 'HEAD',
+        body: '',
+    },
+    res: {
+        status: 200,
+        headers: {
+            date: [
+                'Sat, 07 Sep 2024 17:03:55 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'cache-control': [
+                'max-age=86400, public',
+            ],
+            'x-drupal-dynamic-cache': [
+                'MISS',
+            ],
+            'x-ua-compatible': [
+                'IE=edge',
+            ],
+            'content-language': [
+                'en',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'x-frame-options': [
+                'SAMEORIGIN',
+            ],
+            expires: [
+                'Sun, 19 Nov 1978 05:00:00 GMT',
+            ],
+            vary: [
+                'Cookie',
+            ],
+            'x-generator': [
+                'Drupal 9 (https://www.drupal.org)',
+            ],
+            'x-drupal-cache': [
+                'HIT',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'last-modified': [
+                'Sat, 07 Sep 2024 17:03:55 GMT',
+            ],
+            etag: [
+                '"1725728635"',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=100',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+            'content-type': [
+                'text/html; charset=UTF-8',
+            ],
+        },
+        body: '',
+    },
+}
