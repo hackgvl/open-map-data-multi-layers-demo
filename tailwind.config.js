@@ -1,6 +1,9 @@
-/* eslint-env node */
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import flowbitePlugin from "flowbite/plugin";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import Config from "tailwindcss";
+
+/** @type {Config} */
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue}",
@@ -10,5 +13,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [flowbitePlugin],
 };
