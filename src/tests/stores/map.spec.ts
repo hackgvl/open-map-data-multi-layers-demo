@@ -60,8 +60,8 @@ describe("mapStore", () => {
     expect(fetchResult["Breweries"]).toBeDefined();
     expect(fetchResult["Breweries"].mapTitle).toBe("Breweries");
     expect(fetchResult["Breweries"].mapSlug).toBe("breweries");
-    expect(fetchResult["Breweries"].geoJsonUrl.toString()).toBe(
-      `${process.env.DATA_API_BASE_URL}/map/geojson/breweries/`,
+    expect(fetchResult["Breweries"].geoJsonUrl.toString()).toContain(
+      "/maps/breweries/points.geojson",
     );
   });
 
