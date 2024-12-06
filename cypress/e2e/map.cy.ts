@@ -12,7 +12,8 @@ describe("Map", () => {
     loadMap("/");
 
     cy.get("[title='Layers']").trigger("mouseover");
-    cy.get(".leaflet-control-layers-overlays label input").first().click();
+    cy.get(".leaflet-control-layers-overlays label input").first().check();
+    cy.get(".leaflet-control-layers-overlays label input").first().check();
 
     cy.url().should("contain", "maps=");
   });
@@ -21,7 +22,8 @@ describe("Map", () => {
     loadMap("/?maps=adult-day-care");
 
     cy.get("[title='Layers']").trigger("mouseover");
-    cy.get(".leaflet-control-layers-overlays label input[checked]").click();
+    cy.get(".leaflet-control-layers-overlays label input[checked]").uncheck();
+    cy.get(".leaflet-control-layers-overlays label input[checked]").uncheck();
 
     cy.url().should("not.contain", "maps=");
   });
@@ -171,7 +173,8 @@ describe("Map", () => {
 
       // Disable the art galleries layer
       cy.get("[title='Layers']").trigger("mouseover");
-      cy.get(".leaflet-control-layers-overlays label input[checked]").click();
+      cy.get(".leaflet-control-layers-overlays label input[checked]").uncheck();
+      cy.get(".leaflet-control-layers-overlays label input[checked]").uncheck();
 
       // Maintainer control should not be visible any longer
       cy.get("[title='Maintainers']").should("not.exist");
