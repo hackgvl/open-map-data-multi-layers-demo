@@ -79,7 +79,7 @@ export const useMapStore = defineStore("map", {
                 const geoJsonUrl = new URL(
                   mapDataJson.field_geojson_link[0].uri
                     .toString()
-                    .replace("internal:", process.env.DATA_API_BASE_URL),
+                    .replace("internal:", process.env.DATA_API_BASE_URL || ""),
                 );
 
                 const mapData = {
