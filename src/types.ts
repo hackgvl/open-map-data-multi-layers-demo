@@ -89,33 +89,13 @@ export type MapJson = {
   body: Array<object>;
   field_center_point_latitude: Array<{ value: number }>;
   field_center_point_longitude: Array<{ value: number }>;
-  field_contribute_link: Array<{
-    uri: string;
-    title: string;
-    options: Array<object>;
-  }>;
-  field_geojson_link: Array<{
-    uri: string;
-    title: string;
-    options: Array<object>;
-  }>;
-  field_maintainers: Array<{
-    uri: string;
-    title: string;
-    options: Array<object>;
-  }>;
-  field_map_preview_link: Array<{
-    uri: string;
-    title: string;
-    options: Array<object>;
-  }>;
+  field_contribute_link: Array<AttributedEntity>;
+  field_geojson_link: Array<AttributedEntity>;
+  field_maintainers: Array<AttributedEntity>;
+  field_map_preview_link: Array<AttributedEntity>;
   field_map_tags: Array<object>;
   field_meta_tags: Array<{ value: Array<object> }>;
-  field_raw_data_link: Array<{
-    uri: string;
-    title: string;
-    options: Array<object>;
-  }>;
+  field_raw_data_link: Array<AttributedEntity>;
   field_slug: Array<{ value: string }>;
   field_zoom_level: Array<{ value: number }>;
 };
