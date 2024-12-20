@@ -1,0 +1,71 @@
+{
+    meta: {
+        createdAt: '2024-12-20T17:30:50.697Z',
+        host: 'https://data.openupstate.org',
+    },
+    req: {
+        headers: {
+            connection: 'keep-alive',
+            'proxy-connection': 'keep-alive',
+            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
+            'sec-ch-ua-mobile': '?0',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/13.17.0 Chrome/118.0.5993.159 Electron/27.3.10 Safari/537.36',
+            'sec-ch-ua-platform': '"Linux"',
+            accept: '*/*',
+            origin: 'http://localhost:4173',
+            'sec-fetch-site': 'same-site',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            referer: 'http://localhost:4173/',
+            'accept-encoding': 'gzip',
+            'accept-language': 'en-US',
+            'if-none-match': '"1727804197"',
+            'if-modified-since': 'Tue, 01 Oct 2024 17:36:37 GMT',
+        },
+        url: '/rest/maps?_format=json',
+        method: 'GET',
+        body: '',
+    },
+    res: {
+        status: 304,
+        headers: {
+            date: [
+                'Fri, 20 Dec 2024 17:31:27 GMT',
+            ],
+            server: [
+                'Apache',
+            ],
+            'cache-control': [
+                'max-age=86400, public',
+            ],
+            expires: [
+                'Sun, 19 Nov 1978 05:00:00 GMT',
+            ],
+            vary: [
+                'Cookie',
+            ],
+            'strict-transport-security': [
+                'max-age=31536000;',
+            ],
+            'x-content-type-options': [
+                'nosniff',
+            ],
+            'access-control-allow-origin': [
+                '*',
+            ],
+            'access-control-allow-headers': [
+                'origin, x-requested-with, content-type',
+            ],
+            'access-control-allow-methods': [
+                'GET',
+            ],
+            'keep-alive': [
+                'timeout=5, max=99',
+            ],
+            connection: [
+                'Keep-Alive',
+            ],
+        },
+        body: '',
+    },
+}
