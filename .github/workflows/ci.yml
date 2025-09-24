@@ -36,7 +36,7 @@ jobs:
         run: npm run test:e2e
 
       # Uploads the failure screenshots produced by Cypress
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always() && (steps.e2eTests.outcome == 'failure')
         name: Upload Cypress failure screenshots
         with:
