@@ -1,17 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-.link {
-  @apply underline hover:text-white active:text-white;
-  @apply transition-all duration-300 ease-in-out;
+@config "../../tailwind.config.js";
+
+@utility link {
+  text-decoration-line: underline;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+  &:hover {
+    color: white;
+  }
+  &:active {
+    color: white;
+  }
 }
 
 /* Workaround for mobile viewports */
-.h-full-screen {
-  @apply fixed h-full overscroll-none;
+@utility h-full-screen {
+  position: fixed;
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 .leaflet-control-attribution > a {
-  @apply underline;
+  text-decoration-line: underline;
 }

@@ -141,3 +141,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+---
+
+## Acknowledgements
+
+This project was originally inspired by [open_data_gvl](https://github.com/SpaceCowboy326/open_data_gvl) by [SpaceCowboy326](https://github.com/SpaceCowboy326). While the original project served as the starting point, the codebase has been completely rewritten since then.
